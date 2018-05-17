@@ -40,7 +40,7 @@ return [
         'mysql_backend' => [
             'driver' => 'mysql',
             'host' => env('APP_ENV') === 'production' ? env('DB_PROV_BASIC') :
-                (env('APP_ENV') === 'test' ? env('DB_TEST_BASIC') : env('DB_LOCAL_BASIC')),
+                (env('APP_ENV') === 'testing' ? env('DB_TEST_BASIC') : env('DB_LOCAL_BASIC')),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_BASIC_DATABASE', 'forge'),
             'username' => env('DB_BASIC_USERNAME', 'forge'),
@@ -61,7 +61,7 @@ return [
         'mysql_global' => [
             'driver' => 'mysql',
             'host' => env('APP_ENV') === 'production' ? env('DB_PROV_GLOBAL') :
-                (env('APP_ENV') === 'test' ? env('DB_TEST_GLOBAL') : env('DB_LOCAL_GLOBAL')),
+                (env('APP_ENV') === 'testing' ? env('DB_TEST_GLOBAL') : env('DB_LOCAL_GLOBAL')),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_GLOBAL_DATABASE', 'forge'),
             'username' => env('DB_GLOBAL_USERNAME', 'forge'),
@@ -81,7 +81,7 @@ return [
         'mysql_china' => [
             'driver' => 'mysql',
             'host' => env('APP_ENV') === 'production' ? env('DB_PROV_CN') :
-                (env('APP_ENV') === 'test' ? env('DB_TEST_CN') : env('DB_LOCAL_CN')),
+                (env('APP_ENV') === 'testing' ? env('DB_TEST_CN') : env('DB_LOCAL_CN')),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_CN_DATABASE', 'forge'),
             'username' => env('DB_CN_USERNAME', 'forge'),
