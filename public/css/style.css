@@ -1,0 +1,122 @@
+/**
+    Common header css
+ */
+.header-logo-image {
+    max-width: 206px;
+    max-height: 10px;
+}
+
+.sub-nav-header, .site-nav-header {
+    height: 60px;
+    line-height: 60px;
+}
+
+.site-nav-header {
+    background-color: #000c;
+    color: #fff;
+}
+
+#topNav a.logo {
+    height: 60px;
+    line-height: 60px;
+}
+
+#topMain>li>a, #topMain>li>a {
+    height: 60px;
+    line-height: 60px;
+}
+
+#topNav button.btn-mobile {
+    color: #fff;
+}
+
+#topNav button.btn-mobile-active {
+    color: #fff;
+    background: none  !important;
+}
+
+#topMain.site-nav-header-items.nav-pills>li>a {
+    color: #fff;
+
+}
+
+#topMain.site-nav-header-items.nav-pills>li>a:hover, li.active a, .shopping-bag-icon .quick-cart a:hover  {
+    color: #b7b7b7 !important;
+}
+
+.shopping-bag-icon {
+    height: 60px;
+    line-height: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.shopping-bag-icon .quick-cart a {
+    color: #fff;
+    margin-right: 5px;
+}
+
+.badge.badge-corner {
+    height: 16px;
+    font-size: 10px;
+    text-align: center;
+    top: 10px !important;
+    left: 10px !important;
+}
+
+.quick-cart a {
+    font-size: 22px;
+}
+
+.sub-nav-header-items .sub-nav-header-item {
+    font-size: 12px;
+}
+
+@media screen and (max-width: 992px) {
+    #topNav button.btn-mobile-active {
+        position: relative !important;
+        width: 0 !important;
+    }
+    .sub-nav-header-items {
+        background: none !important;
+    }
+    #topMain li.sub-nav-header-item {
+        display: none !important;
+    }
+
+    .sub-nav-header-items li span a.btn {
+        border-radius: 3px !important;
+    }
+}
+
+#topNav a.logo {
+    height: 60px;
+    line-height: 60px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+/**
+    Product header
+ */
+
+
+/**
+    Common footer css
+ */
+.footer-follow-us {
+    padding-top: 20px;
+}
+
+.footer-follow-us > a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.facebook-icon i {
+    color: rgb(46,68,134);
+}
+
+.twitter-icon i{
+    color: rgb(19, 154, 233);
+}
