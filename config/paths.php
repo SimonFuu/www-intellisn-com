@@ -7,3 +7,8 @@
  * https://www.fushupeng.com
  * contact@fushupeng.com
  */
+
+return [
+    'contact' => 'contact',
+    '/' => '/',
+];

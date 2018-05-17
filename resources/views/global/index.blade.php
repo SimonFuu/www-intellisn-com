@@ -1,6 +1,5 @@
 @extends('layouts.common')
 @section('main')
-
     <div id="home">
         HOME <br>
         HOME <br>
@@ -52,5 +51,60 @@
         FEATURE <br>
         FEATURE <br>
         FEATURE <br>
+    </div>
+
+    <div id="pricing">
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+        PRICING <br>
+    </div>
+    <div id="testimonials">
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
+        TESTIMONIALS <br>
     </div>
 @endsection

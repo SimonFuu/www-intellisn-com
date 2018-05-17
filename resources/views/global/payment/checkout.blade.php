@@ -3,8 +3,8 @@
     <div class="container">
         
         <!-- CHECKOUT -->
-        <form class="row clearfix" method="post" action="#">
-
+        <form class="row clearfix" method="post" action="{{ route(SITE . 'Checkout') }}">
+            {{ csrf_field() }}
             <div class="col-lg-7 col-sm-7">
                 <!-- SHIPPING -->
                 <fieldset id="shipping" class="mt-80">

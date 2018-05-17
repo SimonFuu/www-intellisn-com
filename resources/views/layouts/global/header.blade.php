@@ -11,7 +11,7 @@
         </a>
         <ul class="float-right nav nav-pills nav-second-main has-topBar shopping-bag-icon">
             <li class="quick-cart">
-                <a href="{{ route(SITE. 'ShoppingBag') }}">
+                <a href="{{ route(SITE. 'ShoppingCart') }}">
                     <span class="badge badge-aqua badge-corner">9+</span>
                     <i class="fa fa-shopping-cart"></i>
                 </a>

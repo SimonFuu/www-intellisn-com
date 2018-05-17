@@ -1,13 +1,30 @@
 $(document).ready(function () {
+    init();
     navCollapseControl();
     windowsResize();
+    productOptionsSelection();
+    productOption();
 });
+
+/**
+ * 初始化
+ */
+function init() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+}
 
 function windowsResize() {
     $(window).on('resize', function () {
         navCollapseControl();
+        let select = jQuery('.select2');
+        if (select.length > 0) {
+            select.css('width', select.parent('.form-group').width());
+        }
     });
-
 }
 
 function navCollapseControl() {
@@ -17,6 +34,30 @@ function navCollapseControl() {
     } else {
         navbar.removeClass('collapse');
     }
+}
+
+function productOptionsSelection() {
+    $('.product-option').on('click', function () {
+        if (!$(this).hasClass('selected')) {
+            $(this).addClass('selected');
+            $(this).siblings('div').each(function (index, ele) {
+                $(ele).removeClass('selected');
+            })
+
+        }
+    });
+}
+
+function productOption() {
+    $('.add-to-cart-btn').on('click', function (e) {
+        let option = $('.product-option.selected');
+        if (option.length === 0) {
+            alert('select an option first!');
+        } else {
+            location.href=$(this).data('url');
+        }
+
+    });
 }
 /**
  * over write _topNav Function
@@ -92,35 +133,7 @@ function _topNav() {
     jQuery("button#page-menu-mobile").bind("click", function() {
         jQuery(this).next('ul').slideToggle(150);
     });
-    // Quick Cart
-    jQuery('li.quick-cart>a').click(function (e) {
-        e.preventDefault();
 
-        var _quick_cart_box = jQuery('li.quick-cart div.quick-cart-box');
-
-        if(_quick_cart_box.is(":visible")) {
-            _quick_cart_box.fadeOut(300);
-        } else {
-            _quick_cart_box.fadeIn(300);
-
-            // close search if visible
-            if(jQuery('li.search .search-box').is(":visible")) {
-                jQuery('.search-box').fadeOut(300);
-            }
-        }
-    });
-    // close quick cart on body click
-    if(jQuery('li.quick-cart>a').size() != 0) {
-        jQuery('li.quick-cart').on('click', function(e){
-            e.stopPropagation();
-        });
-
-        jQuery('body').on('click', function() {
-            if (jQuery('li.quick-cart div.quick-cart-box').is(":visible")) {
-                jQuery('li.quick-cart div.quick-cart-box').fadeOut(300);
-            }
-        });
-    }
     // Page Menu [scrollTo]
     jQuery("#page-menu ul.menu-scrollTo>li").bind("click", function(e) {
 

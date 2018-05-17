@@ -45,10 +45,10 @@ return [
         ],
 
         'daily' => [
-            'driver' => 'daily',
+            'driver' => env('APP_LOG', 'single'),
             'path' => storage_path('logs/laravel.log'),
-            'level' => 'debug',
-            'days' => 7,
+            'level' => env('APP_LOG_LEVEL', 'debug'),
+            'days' => env('APP_LOG_FILES_COUNT', '30'),
         ],
 
         'slack' => [

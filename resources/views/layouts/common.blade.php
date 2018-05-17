@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Intellisn</title>
     {{-- TODO Title Config From DB --}}
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700" rel="stylesheet" type="text/css" />
     @if(config('app.env') !== 'production' || app('request') -> header('host') === config('domains.china'))
@@ -19,6 +19,7 @@
     <link href="{{ CDN_SERVER }}/css/smarty/header.css" rel="stylesheet" type="text/css" />
     <link href="{{ CDN_SERVER }}/css/smarty/blue.css" rel="stylesheet" type="text/css" id="color_scheme" />
     <link rel="stylesheet" href="{{ CDN_SERVER }}/css/style.css?v={{ config('app.static.version') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body class="smoothscroll enable-animation">
 
@@ -56,7 +57,7 @@
 @endif
 
 <!-- JAVASCRIPT FILES -->
-<script>var plugin_path = '{{ CDN_SERVER }}/plugins/';</script>
+<script>let plugin_path = '{{ CDN_SERVER }}/plugins/';</script>
 <script src="{{ CDN_SERVER }}/js/smarty/scripts.js?v={{ config('app.static.version') }}"></script>
 <script src="{{ CDN_SERVER }}/js/functions.js?v={{ config('app.static.version') }}"></script>
 </body>

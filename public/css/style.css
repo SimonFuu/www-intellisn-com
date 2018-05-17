@@ -120,3 +120,29 @@
 .twitter-icon i{
     color: rgb(19, 154, 233);
 }
+
+/**
+    Product detail
+ */
+
+.product-option {
+    border: 2px solid #b7b7b7;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.product-option.selected {
+    border: 2px solid #3575DD;
+}
+
+.add-to-cart-btn {
+    margin-top: 20px;
+}
+
+/**
+    Shopping cart
+ */
+.cart-content {
+    border: 1px solid #dee2e6;
+}
