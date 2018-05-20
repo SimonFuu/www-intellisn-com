@@ -54,7 +54,7 @@ class ProductController extends GlobalController
         $product -> spu = $spu;
         $product -> options = $ops;
         $product -> price = is_null($priceInfo) ? [] : $priceInfo;
-        return view('global.products.detail', ['product' => $product, 'productId' => $id]);
+        return view('global.products.detail', ['product' => $product]);
     }
 
     public function getSKUPrice(Request $request)
