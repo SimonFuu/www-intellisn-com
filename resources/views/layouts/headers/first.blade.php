@@ -20,7 +20,7 @@
             </ul>
             <div class="navbar-collapse float-right nav-main-collapse">
                 <nav class="nav-main">
-                    <ul id="topMain" class="nav nav-pills nav-main nav-onepage site-nav-header-items">
+                    <ul id="topMain" class="nav nav-pills nav-main site-nav-header-items">
                         <li class="">
                             <a href="{{ route(SITE. 'Index') }}">
                                 HOME
@@ -29,6 +29,12 @@
                         <li>
                             <a href="{{ route(SITE.'Contact') }}">
                                 CONTACT
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route(SITE.'OrderInquiryForm') }}">
+                                ORDER INQUIRY
                             </a>
                         </li>
                     </ul>

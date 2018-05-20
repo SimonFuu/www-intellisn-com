@@ -52,6 +52,7 @@ class PaymentController extends GlobalController
 
     public function checkoutSubmit(Request $request)
     {
+
         return redirect(route(SITE . 'CheckoutSuccess'));
     }
 

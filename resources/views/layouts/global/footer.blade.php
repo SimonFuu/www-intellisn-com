@@ -29,6 +29,7 @@
             <ul class="list-unstyled">
                 <li><a href="{{ route(SITE . 'Index') }}">Home</a></li>
                 <li><a href="{{ route(SITE . 'Contact') }}">Contact</a></li>
+                <li><a href="{{ route(SITE . 'OrderInquiryForm') }}">Order Inquiry</a></li>
                 {{--<li><a href="#">About Us</a></li>--}}
                 {{--<li><a href="#">Our Services</a></li>--}}
                 {{--<li><a href="#">Our Clients</a></li>--}}
@@ -42,15 +43,15 @@
             <!-- Newsletter Form -->
             <h4 class="letter-spacing-1">KEEP IN TOUCH</h4>
             <p>Subscribe to Our Newsletter to get Important News &amp; Offers</p>
-            <form class="validate" action="#" method="post" data-success="Subscribed! Thank you!" data-toastr-position="bottom-right" novalidate="novalidate">
+            <form class="validate" action="{{ route(SITE . 'StoreSubscription') }}" method="post" novalidate="novalidate">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                     <input type="email" id="email" name="email" class="form-control required" placeholder="Enter your Email">
-                    <span class="input-group-btn">
-                    <button class="btn btn-success" type="submit">Subscribe</button>
-                </span>
+                    <span class="input-group-btn"><button class="btn btn-success" type="submit">Subscribe</button></span>
                 </div>
-                <input type="hidden" name="is_ajax" value="true">
+                <div class="ajax-form-alert">
+
+                </div>
             </form>
             <!-- /Newsletter Form -->
             <!-- Social Icons -->

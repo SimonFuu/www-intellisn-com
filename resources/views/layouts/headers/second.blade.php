@@ -27,6 +27,11 @@
                                 TESTIMONIALS
                             </a>
                         </li>
+                        <li class="sub-nav-header-item">
+                            <button data-toggle="modal" data-target="#backersModal">
+                                ALL BACKERS
+                            </button>
+                        </li>
                         <li>
                             <span>
                                 <a href="{{ route(SITE . 'Product', ['id' => '6402415426629795841']) }}" class="btn btn-sm btn-primary">

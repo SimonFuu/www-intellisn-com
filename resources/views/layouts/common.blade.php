@@ -46,6 +46,8 @@
 </div>
 <!-- /PRELOADER -->
 
+@include('layouts.modals')
+
 @if(config('app.env') !== 'production' || app('request') -> header('host') === config('domains.china'))
     <script src="https://cdn.bootcss.com/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>

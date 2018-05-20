@@ -7,7 +7,7 @@
             {{ csrf_field() }}
             <div class="col-lg-7 col-sm-7">
                 <!-- SHIPPING -->
-                <fieldset id="shipping" class="mt-80">
+                <fieldset id="shipping" class="mt-30">
                     <h4>Shipping Address</h4>
                     <hr />
 
@@ -153,6 +153,13 @@
                                         <input id="payment:cc_cvv" name="payment[cc_cvv]" type="text" class="form-control required" autocomplete="off" maxlength="4" />
                                     </div>
                                 </div>
+                                <span class="clearfix">
+                                    <span class="float-right fs-20">$128.75</span>
+                                    <strong class="float-left">TOTAL:</strong>
+                                </span>
+                                <hr />
+
+                                <button class="btn btn-primary btn-lg btn-block fs-15"><i class="fa fa-mail-forward"></i> Place Order Now</button>
 
                             </div>
                         </div>
@@ -160,41 +167,6 @@
 
                 </fieldset>
                 <!-- /CREDIT CARD PAYMENT -->
-
-
-                <!-- TOTAL / PLACE ORDER -->
-                <div class="toggle-transparent toggle-bordered-full clearfix">
-                    <div class="toggle active">
-                        <div class="toggle-content">
-
-                                            <span class="clearfix">
-                                                <span class="float-right">$120.75</span>
-                                                <strong class="float-left">Subtotal:</strong>
-                                            </span>
-                            <span class="clearfix">
-                                                <span class="float-right">$0.00</span>
-                                                <span class="float-left">Discount:</span>
-                                            </span>
-                            <span class="clearfix">
-                                                <span class="float-right">$8.00</span>
-                                                <span class="float-left">Shipping:</span>
-                                            </span>
-
-                            <hr />
-
-                            <span class="clearfix">
-                                                <span class="float-right fs-20">$128.75</span>
-                                                <strong class="float-left">TOTAL:</strong>
-                                            </span>
-
-                            <hr />
-
-                            <button class="btn btn-primary btn-lg btn-block fs-15"><i class="fa fa-mail-forward"></i> Place Order Now</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- /TOTAL / PLACE ORDER -->
-
 
             </div>
         </form>

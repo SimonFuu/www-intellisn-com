@@ -30,6 +30,11 @@
                             CONTACT
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route(SITE.'OrderInquiryForm') }}">
+                            ORDER INQUIRY
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>

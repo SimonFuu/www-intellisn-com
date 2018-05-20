@@ -16,12 +16,15 @@ Route::domain(config('domains.global'))
         Route::group(['namespace' => 'Globals'], function () {
             Route::get('/', 'IndexController@showIndex') -> name('globalIndex');
             Route::get('/contact', 'IndexController@showContact') -> name('globalProduct');
-            Route::get('/product/{id}', 'ProductController@showIndex') -> name('globalProduct');
             Route::get('/cart', 'PaymentController@showShoppingCart') -> name('globalShoppingCart');
             Route::get('/contact', 'ContactController@showIndex') -> name('globalContact');
             Route::get('/checkout', 'PaymentController@showCheckoutForm') -> name('globalCheckoutForm');
             Route::post('/checkout/submit', 'PaymentController@checkoutSubmit') -> name('globalCheckout');
             Route::get('/checkout/success', 'PaymentController@checkoutSuccess') -> name('globalCheckoutSuccess');
+            Route::get('/order/inquiry', 'OrderController@showInquiryForm') -> name('globalOrderInquiryForm');
+            Route::get('/product/{id}', 'ProductController@showIndex') -> name('globalProduct');
+            Route::post('/product/sku/price', 'ProductController@getSKUPrice') -> name('globalQuerySKUPrice');
+            Route::post('/subscription/store', 'IndexController@storeSubscription') -> name('globalStoreSubscription');
         });
     });
 

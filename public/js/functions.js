@@ -43,7 +43,30 @@ function productOptionsSelection() {
             $(this).siblings('div').each(function (index, ele) {
                 $(ele).removeClass('selected');
             })
+        }
 
+        let selected = $('.product-option.selected');
+        if (selected.length === $('.product-option-group').length) {
+            opts = [];
+            selected.each(function (index, ele) {
+                opts[index] = $(ele).data('opt-id');
+            });
+            $.ajax({
+                type: 'POST',
+                url: $(this).data('query-url'),
+                data: {'is_ajax': true, 'p_id': $('.product-id').data('product-id'), 'options': opts},
+                success: function (data) {
+                    if (data.status) {
+                        $('.product-original-price').addClass('line-through');
+                        $('.product-price').html(data.data.currency + ': ' + data.data.cur_symbol + (data.data.price / 100).toFixed(2));
+                    } else {
+                        alert('Getting product price error.')
+                    }
+                },
+                error: function () {
+                    alert('Getting product price error.')
+                }
+            })
         }
     });
 }
@@ -59,6 +82,11 @@ function productOption() {
 
     });
 }
+
+function compare(a, b) {
+    return b-b;
+}
+
 /**
  * over write _topNav Function
  * @private
@@ -66,7 +94,7 @@ function productOption() {
 function _topNav() {
     window.scrollTop 		= 0;
     window._cmScroll 		= 0;
-    var _header_el 			= jQuery("#header");
+    let _header_el 			= jQuery("#header");
 
     jQuery(window).scroll(function() {
         _toTop();
@@ -85,7 +113,7 @@ function _topNav() {
         }
     }
     // Mobile Submenu
-    var addActiveClass 	= false;
+    let addActiveClass 	= false;
     jQuery("#topMain a.dropdown-toggle").bind("click", function(e) {
         if(jQuery(this).attr('href') == "#") {
             e.preventDefault();
@@ -138,7 +166,7 @@ function _topNav() {
     jQuery("#page-menu ul.menu-scrollTo>li").bind("click", function(e) {
 
         // calculate padding-top for scroll offset
-        var _href 	= jQuery('a', this).attr('href');
+        let _href 	= jQuery('a', this).attr('href');
 
         if(!jQuery('a', this).hasClass('external')) {
             e.preventDefault();
@@ -242,12 +270,12 @@ function _topNav() {
     if(_header_el.hasClass('sticky')) {
         _topBar_H 	= jQuery("#topBar").outerHeight() || 0;
         if(_header_el.hasClass('transparent')) {
-            var _el 					= jQuery("#topNav div.nav-main-collapse"),
+            let _el 					= jQuery("#topNav div.nav-main-collapse"),
                 _data_switch_default 	= _el.attr('data-switch-default') 	|| '',
                 _data_switch_scroll 	= _el.attr('data-switch-scroll') 	|| '';
         }
         jQuery(window).scroll(function() {
-            var _scrollTop 	= jQuery(document).scrollTop();
+            let _scrollTop 	= jQuery(document).scrollTop();
             if((window.width > 992 && _topBar_H < 1)) { // 992 to disable on mobile
                 if(_scrollTop > _topBar_H && _scrollTop > 60) {
                     _header_el.addClass('fixed');
@@ -288,10 +316,10 @@ function _topNav() {
     } else
     if(_header_el.hasClass('scroll')) {
         jQuery('body').addClass('header-scroll-reveal');
-        var didScroll;
-        var lastScrollTop 	= 0;
-        var delta 			= 5;
-        var _header_H 		= _header_el.outerHeight() || 0;
+        let didScroll;
+        let lastScrollTop 	= 0;
+        let delta 			= 5;
+        let _header_H 		= _header_el.outerHeight() || 0;
         // _header_H = 0;
         jQuery(window).scroll(function(event){
             didScroll = true;
@@ -304,7 +332,7 @@ function _topNav() {
         }, 100);
 
         function hasScrolled() {
-            var st = $(this).scrollTop();
+            let st = $(this).scrollTop();
             if(Math.abs(lastScrollTop - st) <= delta)
                 return;
             if (st > lastScrollTop && st > _header_H){
@@ -320,13 +348,13 @@ function _topNav() {
     if(_header_el.hasClass('static') && _header_el.hasClass('transparent')) {
         _topBar_H 	= jQuery("#topBar").outerHeight() || 0;
         if(window.width <= 992 && _topBar_H < 1) {
-            var _scrollTop 	= jQuery(document).scrollTop();
+            let _scrollTop 	= jQuery(document).scrollTop();
             _header_H 	= _header_el.outerHeight() || 0;
             _header_el.addClass('fixed');
         }
         jQuery(window).scroll(function() {
             if((window.width > 992 && _topBar_H < 1) || _topBar_H > 0) { // 992 to disable on mobile
-                var _scrollTop 	= jQuery(document).scrollTop();
+                let _scrollTop 	= jQuery(document).scrollTop();
                 if(_scrollTop > _topBar_H) {
                     _header_el.addClass('fixed');
                     _header_H = _header_el.outerHeight() || 0;
@@ -403,7 +431,7 @@ function _topNav() {
     });
 
     if(jQuery("#menu_overlay_open").length > 0) {
-        var is_ie9 = jQuery('html').hasClass('ie9') ? true : false;
+        let is_ie9 = jQuery('html').hasClass('ie9') ? true : false;
         if(is_ie9 == true) {
             jQuery("#topMain").hide();
         }
@@ -440,13 +468,13 @@ function _topNav() {
             _paddingStatusL = jQuery("#mainMenu.sidebar-vertical").css('left');
             _paddingStatusR = jQuery("#mainMenu.sidebar-vertical").css('right');
             if(parseInt(_paddingStatusL) < 0) {
-                var _pos = "left";
+                let _pos = "left";
             } else
             if(parseInt(_paddingStatusR) < 0) {
-                var _pos = "right";
+                let _pos = "right";
             }
             else {
-                var _pos = "left";
+                let _pos = "left";
             }
             jQuery("#sidebar_vertical_btn").bind("click", function(e) {
                 _paddingStatus = jQuery("#mainMenu.sidebar-vertical").css(_pos);
@@ -489,5 +517,111 @@ function _topNav() {
             }
         }
     });
+}
+
+function _form() {
+    /** Form Validate
+     LOAD PLUGIN ONLY!
+     ************************ **/
+    if(jQuery('form.validate-plugin').length > 0) {
+
+        loadScript(plugin_path + 'form.validate/jquery.form.min.js', function() {
+            loadScript(plugin_path + 'form.validate/jquery.validation.min.js');
+        });
+
+    }
+
+    /** Form Validate
+     ************************ **/
+    if(jQuery('form.validate').length > 0) {
+
+        loadScript(plugin_path + 'form.validate/jquery.form.min.js', function() {
+            loadScript(plugin_path + 'form.validate/jquery.validation.min.js', function() {
+
+                if(jQuery().validate) {
+
+                    jQuery('form.validate').each(function() {
+
+                        let _t 			= jQuery(this);
+
+                        // Append 'is_ajax' hidden input field!
+                        _t.append('<input type="hidden" name="is_ajax" value="true" />');
+
+                        _t.validate({
+                            submitHandler: function(form) {
+
+                                // Show spin icon
+                                jQuery(form).find('.input-group-addon').find('.fa-envelope').removeClass('fa-envelope').addClass('fa-refresh fa-spin');
+
+                                jQuery(form).ajaxSubmit({
+
+                                    target: jQuery(form).find('.validate-result').length > 0 ? jQuery(form).find('.validate-result') : '',
+
+                                    error: function(data) {
+                                        jQuery(form).append(alertGenerator("Sent Failed!", false));
+                                    },
+
+                                    success: function(data) {
+                                        let result = true;
+
+                                        if (data.status) {
+                                            // Remove spin icon
+                                            jQuery(form).find('.input-group-addon').find('.fa-refresh').removeClass('fa-refresh fa-spin').addClass('fa-envelope');
+
+                                            // Clear the form
+                                            jQuery(form).find('input.form-control').val('');
+
+                                        } else  {
+                                            result = false;
+                                        }
+
+                                        let alertArea = jQuery('.ajax-form-alert');
+                                        alertArea.html('');
+                                        alertArea.append(alertGenerator(data.message, result));
+                                    }
+                                });
+
+                            }
+                        });
+
+                    });
+
+                }
+
+            });
+        });
+
+    }
+
+    /** Masked Input
+     ************************ **/
+    let _container = jQuery('input.masked');
+    if(_container.length > 0) {
+
+        loadScript(plugin_path + 'form.masked/jquery.maskedinput.js', function() {
+
+            _container.each(function() {
+
+                let _t 				= jQuery(this);
+                _format 		= _t.attr('data-format') 		|| '(999) 999-999999',
+                    _placeholder 	= _t.attr('data-placeholder') 	|| 'X';
+
+                jQuery.mask.definitions['f'] = "[A-Fa-f0-9]";
+                _t.mask(_format, {placeholder:_placeholder});
+
+            });
+
+        });
+
+    }
+
+    function alertGenerator(message, type) {
+        let status = type ? 'success' : 'danger';
+        let html = '<div class="self-alert alert alert-' + status + ' alert-mini alert-dismissable">';
+        html += '<button type="button" class="close btn btn-sm" data-dismiss="alert" aria-hidden="true">&times;</button>';
+        html += message + '</div>';
+        return html;
+    }
+
 }
 

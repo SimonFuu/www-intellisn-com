@@ -11,6 +11,8 @@
 namespace App\Http\Controllers\Globals;
 
 
+use Illuminate\Http\Request;
+
 class IndexController extends GlobalController
 {
     public function showIndex()
@@ -22,4 +24,6 @@ class IndexController extends GlobalController
     {
         return view('global.contact');
     }
+
+
 }
