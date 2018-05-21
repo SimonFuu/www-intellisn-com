@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
             define('SITE', 'global');
             $this -> defineCDNServers('global');
         }
+
+        if (!$request -> ajax()) {
+            $this -> countCartNumber();
+        }
+
     }
 
     /**
@@ -42,5 +49,24 @@ class AppServiceProvider extends ServiceProvider
         } else {
             define('CDN_SERVER', '');
         }
+    }
+
+    private function countCartNumber()
+    {
+        view() -> composer('layouts.headers.first', function($view) {
+            try {
+                $cart = Cookie::get('cart');
+                if (substr($cart, 0 ,1) !== '{') {
+                    $cart = decrypt($cart);
+
+                }
+                $cartItems = json_decode($cart, true);
+            } catch (\Exception $e) {
+                Log::warning('购物车反序列化失败！' . $e -> getMessage());
+                $cartItems = [];
+            }
+            $count = count($cartItems);
+            $view -> with('cartItemsCount', $count === 0 ? '' : ($count > 9 ? '9+' : $count));
+        });
     }
 }

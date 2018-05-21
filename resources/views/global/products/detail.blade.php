@@ -71,7 +71,7 @@
                             @endforeach
 
                         @endif
-                        <button data-url="{{ route(SITE . 'ShoppingCart') }}" class="add-to-cart-btn btn btn-primary">ADD TO CART</button>
+                        <button data-url="{{ route(SITE . 'AddingToShoppingCart') }}" class="add-to-cart-btn btn btn-primary">ADD TO CART</button>
                     </div>
 
                     <hr />

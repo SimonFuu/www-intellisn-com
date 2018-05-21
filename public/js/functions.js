@@ -4,6 +4,8 @@ $(document).ready(function () {
     windowsResize();
     productOptionsSelection();
     productOption();
+    cartCountDisplay();
+    calculateCartPrice();
 });
 
 /**
@@ -17,6 +19,9 @@ function init() {
     });
 }
 
+/**
+ * 窗口尺寸发生变化
+ */
 function windowsResize() {
     $(window).on('resize', function () {
         navCollapseControl();
@@ -27,6 +32,9 @@ function windowsResize() {
     });
 }
 
+/**
+ * 滚动控制
+ */
 function navCollapseControl() {
     let navbar = $('.navbar-collapse');
     if ($(window).width() <= 977) {
@@ -36,6 +44,9 @@ function navCollapseControl() {
     }
 }
 
+/**
+ * 产品SKU选择
+ */
 function productOptionsSelection() {
     $('.product-option').on('click', function () {
         if (!$(this).hasClass('selected')) {
@@ -71,20 +82,96 @@ function productOptionsSelection() {
     });
 }
 
+/**
+ * 将产品添加到购物车
+ */
 function productOption() {
     $('.add-to-cart-btn').on('click', function (e) {
         let option = $('.product-option.selected');
-        if (option.length === 0) {
-            alert('select an option first!');
+        if (option.length !== $('.product-option-group').length) {
+            alert('select the option first!');
         } else {
-            location.href=$(this).data('url');
+            let opts = [];
+            option.each(function (index, element) {
+                opts.push($(element).data('opt-id'));
+            });
+            let sku = $.base64.encode(JSON.stringify({'product': $('.product-id').data('product-id'), 'option': opts}));
+            location.href=$(this).data('url') + '?product=' + sku;
         }
-
     });
 }
 
-function compare(a, b) {
-    return b-b;
+function cartCountDisplay() {
+    let addToCartResult = $('.add-to-cart-result');
+    if (addToCartResult.length > 0 && addToCartResult.data('items-count') > 0) {
+        $('.quick-cart').find('.badge.badge-aqua.badge-corner').html(addToCartResult.data('items-count'));
+    }
+}
+
+function calculateCartPrice() {
+    $('.item-count').on('change', function () {
+        if ($(this).val() > 99 || $(this).val() < 1) {
+            alert('请输入1-99之间的数字！')
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: $(this).data('update-url'),
+                data: {'count': $(this).val(), 'delivery': $('.cart-delivery-country').val()},
+                success: function (data) {
+                    callback(data);
+                },
+                error: function () {
+                    alert('request error happened.')
+                },
+            });
+        }
+    });
+    $('.cart-delivery-country').on('change', function () {
+        $.ajax({
+            type: 'POST',
+            url: $(this).data('update-url'),
+            data: {'delivery': $(this).val()},
+            success: function (data) {
+                callback(data);
+            },
+            error: function () {
+                alert('request error happened.')
+            },
+        });
+    });
+
+    $('.cart-delete-item').on('click', function () {
+        let self = $(this);
+        $.ajax({
+            type: 'POST',
+            url: $(this).data('update-url'),
+            data: {'delivery': $('.cart-delivery-country').val(), 'action': 'delete'},
+            success: function (data) {
+                if (data.status) {
+                    if (data.data.total === 0)  {
+                        self.parents('form').remove();
+                        $('.card.card-default.hide-cart-default').removeClass('hide-cart-default');
+                    } else  {
+                        self.parents('tr').remove();
+                    }
+                }
+                callback(data);
+            },
+            error: function () {
+                alert('request error happened.')
+            },
+        });
+    });
+    function callback(response) {
+        if (response.status) {
+            $('.total-budget > span').html((response.data.subtotal / 100).toFixed(2));
+            $('.discount > span').html((response.data.discount / 100).toFixed(2));
+            $('.shipping > span').html((response.data.shipping / 100).toFixed(2));
+            $('.pay-amount > strong > span').html((response.data.total / 100).toFixed(2));
+        } else {
+            alert(response.message);
+        }
+    }
 }
 
 /**

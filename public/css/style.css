@@ -161,7 +161,13 @@
     border: 1px solid #dee2e6;
 }
 
+.cart-delete-item {
+    cursor: pointer;
+}
 
+.hide-cart-default {
+    display: none !important;
+}
 /**
     Order detail
  */

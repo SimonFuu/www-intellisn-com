@@ -13,11 +13,41 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    protected $deliveryCountries = [
+        "CN" => "China",
+        "DE" => "Germany",
+        "ES" => "Spain",
+        "FR" => "France",
+        "GB" => "United Kingdom",
+        "HK" => "Hong Kong, China",
+        "IT" => "Italy",
+        "NL" => "Netherlands",
+        "TW" => "Chinese Taiwan",
+        "US" => "United States",
+    ];
     public function __construct()
     {
         DB::setDefaultConnection('mysql_' . SITE);
     }
 
+    /**
+     * ajax 调用通用返回格式
+     * @param bool $result
+     * @param bool $status
+     * @param string $message
+     * @param array $data
+     * @return array
+     */
+    public function ajaxResponse($result = true, $status = true, $message = '', $data = [])
+    {
+        return ['result' => $result, 'status' => $status, 'message' => $message, 'data' => $data];
+    }
+
+    /**
+     * 邮件订阅保存
+     * @param Request $request
+     * @return array
+     */
     public function storeSubscription(Request $request)
     {
         if ($request -> has('is_ajax') && $request -> is_ajax) {
