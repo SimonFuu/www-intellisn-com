@@ -32,7 +32,7 @@ class CartController extends GlobalController
             try {
                 $record = $reader -> country($request -> ip());
 //            $location = $record->country->isoCode;
-                $location = isset($this -> deliverCountries[$record->country->isoCode]) ? $record->country->isoCode : 'US';
+                $location = isset($this -> deliveryCountries[$record->country->isoCode]) ? $record->country->isoCode : 'US';
             } catch (\Exception $e) {
                 Log::warning('Get customer location error: ' . $e -> getMessage());
             }
