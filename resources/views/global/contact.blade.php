@@ -1,6 +1,5 @@
 @extends('layouts.common')
 @section('main')
-
     <div class="container">
         ===============
         Contact <br>

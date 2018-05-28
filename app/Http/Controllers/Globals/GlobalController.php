@@ -17,7 +17,7 @@ class GlobalController extends Controller
 {
     /**
      * 计算共计价格
-     * @param object $items
+     * @param array $items
      * @return float|int
      */
     protected function subtotalCounting($items = [])
@@ -45,7 +45,7 @@ class GlobalController extends Controller
 
     /**
      * 根据SKU及数量获取折扣信息
-     * @param string $sku
+     * @param string $sku （预留，为后续扩展作准备）
      * @param int $count
      * @return float|int
      */

@@ -43,7 +43,7 @@ class CartController extends GlobalController
             }
             $subtotal = $this -> subtotalCounting($items);
             $checkoutAmount = $this -> itemsCheckoutAmountCounting($items);
-            $discount = $checkoutAmount - $subtotal;
+            $discount = $subtotal - $checkoutAmount;
             $shippingAmount = $this -> getShippingAmount($location, $items);
             return view('global.payment.cart', [
                 'items' => $items,
@@ -58,6 +58,7 @@ class CartController extends GlobalController
                 ]
             ]);
         } else {
+            Cookie::queue(Cookie::forget('cart'));
             return view('global.payment.cart');
         }
     }
@@ -125,7 +126,7 @@ class CartController extends GlobalController
                         'cartItemsCount' => -1
                     ]);
                 }
-                Cookie::queue('cart', json_encode($currentCartItems), 120);
+                Cookie::queue('cart', json_encode($currentCartItems), 1440);
                 return view('global.payment.addToCart', [
                     'result' => true, 'message' => '添加产品成功！',
                     'cartItemsCount' => count($currentCartItems),
@@ -158,7 +159,7 @@ class CartController extends GlobalController
 
             $subtotal = $this -> subtotalCounting($items);
             $checkoutAmount = $this -> itemsCheckoutAmountCounting($items);
-            $discount = $checkoutAmount - $subtotal;
+            $discount = $subtotal - $checkoutAmount;
             $shippingAmount = $this -> getShippingAmount($request -> delivery, $items);
             return $this -> ajaxResponse(true, true, 'success.', [
                 'subtotal' => $subtotal,
@@ -177,11 +178,11 @@ class CartController extends GlobalController
             if (isset($items[$sku]) && $request -> has('count') && $request -> count <= 99 && $request -> count >= 1) {
                 $items[$sku]['count'] = $request -> count;
                 $items = json_encode($items);
-                Cookie::queue('cart', $items);
+                Cookie::queue('cart', $items, 1440);
                 $items =json_decode($items);
                 $subtotal = $this -> subtotalCounting($items);
                 $checkoutAmount = $this -> itemsCheckoutAmountCounting($items);
-                $discount = $checkoutAmount - $subtotal;
+                $discount = $subtotal - $checkoutAmount;
                 $shippingAmount = $this -> getShippingAmount($request -> delivery, $items);
                 return $this -> ajaxResponse(true, true, 'success.', [
                     'subtotal' => $subtotal,
@@ -205,7 +206,7 @@ class CartController extends GlobalController
                     Cookie::queue(Cookie::forget('cart'));
                 } else {
                     $items = json_encode($items);
-                    Cookie::queue('cart', $items);
+                    Cookie::queue('cart', $items, 1440);
                     $items =json_decode($items);
                     $subtotal = $this -> subtotalCounting($items);
                     $checkoutAmount = $this -> itemsCheckoutAmountCounting($items);

@@ -15,16 +15,19 @@ Route::domain(config('domains.global'))
     -> group(function () {
         Route::group(['namespace' => 'Globals'], function () {
             Route::get('/', 'IndexController@showIndex') -> name('globalIndex');
-            Route::get('/contact', 'IndexController@showContact') -> name('globalProduct');
             Route::get('/cart', 'CartController@showShoppingCart') -> name('globalShoppingCart');
             Route::get('/cart/add', 'CartController@storeAddingItemsToCart') -> name('globalAddingToShoppingCart');
             Route::post('/cart/update/delivery', 'CartController@updatingCartItems') -> name('globalUpdatingShoppingCartDelivery');
             Route::post('/cart/update/{sku}', 'CartController@updatingCartItems') -> name('globalUpdatingToShoppingCart');
+            Route::get('/support/product/{id}', 'SupportController@showSupport') -> name('globalProductSupport');
             Route::get('/contact', 'ContactController@showIndex') -> name('globalContact');
-            Route::get('/checkout', 'PaymentController@showCheckoutForm') -> name('globalCheckoutForm');
-            Route::post('/checkout/submit', 'PaymentController@checkoutSubmit') -> name('globalCheckout');
-            Route::get('/checkout/success', 'PaymentController@checkoutSuccess') -> name('globalCheckoutSuccess');
+            Route::post('/order/create', 'OrderController@create') -> name('globalCreateOrder');
+            Route::get('/order/checkout/{id}', 'OrderController@showCheckoutForm') -> name('globalCheckoutForm');
+            Route::get('/order/recheckout/{id}', 'OrderController@showReCheckoutForm') -> name('globalReCheckoutForm');
             Route::get('/order/inquiry', 'OrderController@showInquiryForm') -> name('globalOrderInquiryForm');
+            Route::post('/pay/submit', 'PaymentController@checkoutSubmit') -> name('globalCheckout');
+            Route::post('/pay/resubmit', 'PaymentController@checkoutReSubmit') -> name('globalReCheckout');
+            Route::get('/pay/result', 'PaymentController@checkoutSuccess') -> name('globalCheckoutResult');
             Route::get('/product/{id}', 'ProductController@showIndex') -> name('globalProduct');
             Route::post('/product/sku/price', 'ProductController@getSKUPrice') -> name('globalQuerySKUPrice');
             Route::post('/subscription/store', 'IndexController@storeSubscription') -> name('globalStoreSubscription');

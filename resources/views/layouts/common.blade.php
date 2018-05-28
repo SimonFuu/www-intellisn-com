@@ -1,6 +1,11 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <script>
+        if (typeof document.documentMode !== 'undefined' && document.documentMode <= 8) {
+            alert('Sorry, IE ' + document.documentMode + ' is not supported for now, please use Chrome Firefox or IE 10+ to continue.');
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -45,6 +50,12 @@
     </div>
 </div>
 <!-- /PRELOADER -->
+
+<div class="self-placeholder hide">
+    <div class="inner">
+        <span class="loader"></span>
+    </div>
+</div>
 
 @include('layouts.modals')
 

@@ -1,77 +1,108 @@
 @extends('layouts.common')
 @section('main')
     <div class="container">
-        
         <!-- CHECKOUT -->
         <form class="row clearfix" method="post" action="{{ route(SITE . 'Checkout') }}">
             {{ csrf_field() }}
+            <input type="hidden" name="id" value="{{ $order -> id }}">
             <div class="col-lg-7 col-sm-7">
                 <!-- SHIPPING -->
                 <fieldset id="shipping" class="mt-30">
                     <h4>Shipping Address</h4>
                     <hr />
 
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <label for="shipping:firstname">First Name *</label>
-                            <input id="shipping:firstname" name="shipping[firstname]" type="text" class="form-control required" />
+                    <div class="row form-row">
+                        <div class="col-md-6 col-sm-6 form-group">
+                            <label for="name">Name *</label>
+                            <input id="name" name="name" type="text" value="{{ old('name') }}" class="form-control required{{ $errors -> has('name') ? ' is-invalid error' : '' }}" />
+                            @if($errors -> has('name'))
+                                <div class="invalid-feedback">
+                                    <strong>{{ $errors -> first('name') }}</strong>
+                                </div>
+                            @endif
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <label for="shipping:lastname">Last Name *</label>
-                            <input id="shipping:lastname" name="shipping[lastname]" type="text" class="form-control required" />
+                            <label for="email">Email *</label>
+                            <input id="email" name="email" type="text" value="{{ old('email') }}" class="form-control required{{ $errors -> has('email') ? ' is-invalid error' : '' }}" />
+                            @if($errors -> has('email'))
+                                <div class="invalid-feedback">
+                                    <strong>{{ $errors -> first('email') }}</strong>
+                                </div>
+                            @endif
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
-                            <label for="shipping:email">Email *</label>
-                            <input id="shipping:email" name="shipping[email]" type="text" class="form-control required" />
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <label for="shipping:phone">Phone *</label>
-                            <input id="shipping:phone" name="shipping[phone]" type="text" class="form-control required" />
+                            <label for="phone">Phone *</label>
+                            <input id="phone" name="phone" type="text" value="{{ old('phone') }}" class="form-control required{{ $errors -> has('phone') ? ' is-invalid error' : '' }}" />
+                            @if($errors -> has('phone'))
+                                <div class="invalid-feedback">
+                                    <strong>{{ $errors -> first('phone') }}</strong>
+                                </div>
+                            @endif
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <label for="shipping:address1">Address *</label>
-                            <input id="shipping:address1" name="shipping[address][]" type="text" class="form-control required" placeholder="Address 1" />
-
-                            <input id="shipping:address2" name="shipping[address][]" type="text" class="form-control mt-10" placeholder="Address 2" />
+                            <label for="address1">Address *</label>
+                            <input id="address1" name="address1" value="{{ old('address1') }}" type="text" class="form-control required{{ $errors -> has('address1') ? ' is-invalid error' : '' }}" placeholder="Address 1" />
+                            @if($errors -> has('address1'))
+                                <div class="invalid-feedback">
+                                    <strong>{{ $errors -> first('address1') }}</strong>
+                                </div>
+                            @endif
+                            <input id="address2" name="address2" value="{{ old('address2') }}" type="text" class="form-control mt-10{{ $errors -> has('address2') ? ' is-invalid error' : '' }}" placeholder="Address 2" />
+                            @if($errors -> has('address2'))
+                                <div class="invalid-feedback">
+                                    <strong>{{ $errors -> first('address2') }}</strong>
+                                </div>
+                            @endif
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
-                            <label for="shipping:city">City *</label>
-                            <input id="shipping:city" name="shipping[city]" type="text" class="form-control required" />
+                            <label for="city">City *</label>
+                            <input id="city" name="city" type="text" value="{{ old('city') }}" class="form-control required{{ $errors -> has('city') ? ' is-invalid error' : '' }}" />
+                            @if($errors -> has('city'))
+                                <div class="invalid-feedback">
+                                    <strong>{{ $errors -> first('city') }}</strong>
+                                </div>
+                            @endif
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <label for="shipping:state">State/Province *</label>
-                            <select id="shipping:state" name="shipping[state]" class="form-control pointer required">
-                                <option value="">Select...</option>
-                                <option value="1">Alabama</option>
-                                <option value="2">Alaska</option>
-                                <option value="">..............</option>
-                            </select>
+                            <label for="state">State/Province *</label>
+                            <input id="state" name="state" type="text" value="{{ old('state') }}" class="form-control required{{ $errors -> has('state') ? ' is-invalid error' : '' }}" />
+                            @if($errors -> has('state'))
+                                <div class="invalid-feedback">
+                                    <strong>{{ $errors -> first('state') }}</strong>
+                                </div>
+                            @endif
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
-                            <label for="shipping:zipcode">Zip/Postal Code *</label>
-                            <input id="shipping:zipcode" name="shipping[zipcode]" type="text" class="form-control required" />
+                            <label for="zip">Zip/Postal Code *</label>
+                            <input id="zip" name="zip" type="text" value="{{ old('zip') }}" class="form-control required{{ $errors -> has('zip') ? ' is-invalid error' : '' }}" />
+                            @if($errors -> has('zip'))
+                                <div class="invalid-feedback">
+                                    <strong>{{ $errors -> first('zip') }}</strong>
+                                </div>
+                            @endif
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <label for="shipping:country">Country *</label>
-                            <select id="shipping:country" name="shipping[country]" class="form-control pointer required">
-                                <option value="">Select...</option>
-                                <option value="1">united States</option>
-                                <option value="2">united Kingdom</option>
-                                <option value="">..............</option>
-                            </select>
+                            {!! Form::label('country', 'Country *', []) !!}
+                            {!! Form::select('country', $delivery, $order -> car, ['class' => 'form-control pointer required select2 disabled' . ($errors -> has('country') ? ' is-invalid error' : '')]) !!}
+                            @if($errors -> has('country'))
+                                <div class="invalid-feedback">
+                                    <strong>{{ $errors -> first('country') }}</strong>
+                                </div>
+                            @endif
                         </div>
+
                     </div>
                 </fieldset>
                 <!-- /SHIPPING -->
@@ -87,80 +118,71 @@
                     <div class="toggle-transparent toggle-bordered-full clearfix">
                         <div class="toggle active">
                             <div class="toggle-content">
-
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <label for="payment:name">Name on Card *</label>
-                                        <input id="payment:name" name="payment[name]" type="text" class="form-control required" autocomplete="off" />
+                                        <label for="paymentCCName">Name on Card *</label>
+                                        <input id="paymentCCName" name="paymentCCName" value="{{ old('paymentCCName') }}" type="text" class="form-control required{{ $errors -> has('paymentCCName') ? ' is-invalid error' : '' }}" autocomplete="off" />
+                                        @if($errors -> has('paymentCCName'))
+                                            <div class="invalid-feedback">
+                                                <strong>{{ $errors -> first('paymentCCName') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <label for="payment:cc_number">Credit Card Number *</label>
-                                        <input id="payment:cc_number" name="payment[cc_number]" type="text" class="form-control required" autocomplete="off" />
+                                        <label for="paymentCCNumber">Credit Card Number *</label>
+                                        <input id="paymentCCNumber" name="paymentCCNumber" value="{{ old('paymentCCNumber') }}" type="text" class="form-control required{{ $errors -> has('paymentCCNumber') ? ' is-invalid error' : '' }}" autocomplete="off" />
+                                        @if($errors -> has('paymentCCNumber'))
+                                            <div class="invalid-feedback">
+                                                <strong>{{ $errors -> first('paymentCCNumber') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <label for="payment:cc_exp_month">Card Expiration *</label>
-
+                                        <label for="paymentCCExpMonth">Card Expiration *</label>
                                         <div class="row mb-0">
                                             <div class="col-lg-6 col-sm-6">
-                                                <select id="payment:cc_exp_month" name="payment[cc_exp_month]" class="form-control pointer required">
-                                                    <option value="0">Month</option>
-                                                    <option value="01">01 - January</option>
-                                                    <option value="02">02 - February</option>
-                                                    <option value="03">03 - March</option>
-                                                    <option value="04">04 - April</option>
-                                                    <option value="05">05 - May</option>
-                                                    <option value="06">06 - June</option>
-                                                    <option value="07">07 - July</option>
-                                                    <option value="08">08 - August</option>
-                                                    <option value="09">09 - September</option>
-                                                    <option value="10">10 - October</option>
-                                                    <option value="11">11 - November</option>
-                                                    <option value="12">12 - December</option>
-                                                </select>
+                                                {!! Form::select('paymentCCExpMonth', $ccExpMonths, old('paymentCCExpMonth'), ['class' => 'form-control pointer required' . ($errors -> has('paymentCCExpMonth') ? ' is-invalid error' : '')]) !!}
+                                                @if($errors -> has('paymentCCExpMonth'))
+                                                    <div class="invalid-feedback">
+                                                        <strong>{{ $errors -> first('paymentCCExpMonth') }}</strong>
+                                                    </div>
+                                                @endif
                                             </div>
-
-                                            <div class="col-lg-6 col-sm-6">
-                                                <select id="payment:cc_exp_year" name="payment[cc_exp_year]" class="form-control pointer required">
-                                                    <option value="0">Year</option>
-                                                    <option value="2015">2015</option>
-                                                    <option value="2016">2016</option>
-                                                    <option value="2017">2017</option>
-                                                    <option value="2018">2018</option>
-                                                    <option value="2019">2019</option>
-                                                    <option value="2020">2020</option>
-                                                    <option value="2021">2021</option>
-                                                    <option value="2022">2022</option>
-                                                    <option value="2023">2023</option>
-                                                    <option value="2024">2024</option>
-                                                    <option value="2025">2025</option>
-                                                </select>
+                                            <div class="col-md-6 col-sm-6">
+                                                {!! Form::select('paymentCCExpYear', $ccExpYears, old('paymentCCExpYear'), ['class' => 'form-control pointer required' . ($errors -> has('paymentCCExpYear') ? ' is-invalid error' : '')]) !!}
+                                                @if($errors -> has('paymentCCExpYear'))
+                                                    <div class="invalid-feedback">
+                                                        <strong>{{ $errors -> first('paymentCCExpYear') }}</strong>
+                                                    </div>
+                                                @endif
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <label for="payment:cc_cvv">CVV2 *</label>
-                                        <input id="payment:cc_cvv" name="payment[cc_cvv]" type="text" class="form-control required" autocomplete="off" maxlength="4" />
+                                        <label for="paymentCCCVV">CVV2 *</label>
+                                        <input id="paymentCCCVV" name="paymentCCCVV" value="{{ old('paymentCCCVV') }}" type="text" class="form-control required{{ $errors -> has('paymentCCCVV') ? ' is-invalid error' : '' }}" autocomplete="off" maxlength="4" />
+                                        @if($errors -> has('paymentCCCVV'))
+                                            <div class="invalid-feedback">
+                                                <strong>{{ $errors -> first('paymentCCCVV') }}</strong>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <span class="clearfix">
-                                    <span class="float-right fs-20">$128.75</span>
+                                    <span class="float-right fs-20">{{ $order -> cur_symbol . number_format($order -> total / 100, 2)}}</span>
                                     <strong class="float-left">TOTAL:</strong>
                                 </span>
                                 <hr />
-
                                 <button class="btn btn-primary btn-lg btn-block fs-15"><i class="fa fa-mail-forward"></i> Place Order Now</button>
-
                             </div>
                         </div>
                     </div>

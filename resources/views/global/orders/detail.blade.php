@@ -5,26 +5,42 @@
             <div class="order-detail">
                 <div class="order-detail-header">
                     <div>
-                        <strong>E-mail：</strong> <span>Simon Fu</span>
+                        <strong>E-mail：</strong> <span>{{ $order -> email }}</span>
                     </div>
                     <div>
-                        <strong>Intellisn order number:</strong> <span>123456</span>
+                        <strong>Intellisn order number:</strong> <span>{{ $order -> id }}</span>
                     </div>
                     <div>
-                        <strong>Order total:</strong> <span>$100</span>
+                        <strong>Order total:</strong> <span>{{ $order -> cur_symbol . number_format($order -> total / 100, 2) }}</span>
                     </div>
-                    <div>
-                        <strong>Order status:</strong> <strong class="text-danger">SHIPPED</strong>
-                    </div>
-                    <div>
-                        <strong>Shipping trace number:</strong> <span><a href="http://www.baidu.com">UPS</a> - 123456</span>
-                    </div>
+                    @if($order -> status == 0)
+                        <div>
+                            <strong>Order status:</strong> <strong class="text-yellow">{{ config('app.order.status.' . $order -> status) }}</strong>
+                        </div>
+                    @elseif($order -> status == 1)
+                        <div>
+                            <strong>Order status:</strong> <strong class="text-blue">{{ config('app.order.status.' . $order -> status) }}</strong>
+                        </div>
+                    @elseif($order -> status == 2)
+                        <div>
+                            <strong>Order status:</strong> <strong class="text-green">{{ config('app.order.status.' . $order -> status) }}</strong>
+                        </div>
+                        <div>
+                            <strong>Shipping trace number:</strong> <span>
+                                <a href="{{ $order -> express -> website }}">{{ $order -> express -> name }}</a> - {{ $order -> express -> number }}
+                            </span>
+                        </div>
+                    @else
+
+                    @endif
                     <hr class="mt-10">
                     <div>
-                        <strong>Order time:</strong> <span>{{ date('Y-m-d H:i:s') }}</span>
+                        <strong>Order time:</strong> <span>{{ $order -> create_at }}</span>
                     </div>
                     <div>
-                        <strong>Last update time:</strong> <span>{{ date('Y-m-d H:i:s') }}</span>
+                        <strong>Last update time:</strong> <span>
+                            {{ $order -> express ? $order -> express -> update_at : $order -> create_at }}
+                        </span>
                     </div>
                 </div>
                 <div class="order-detail-info">
@@ -33,7 +49,7 @@
                         <tr>
                             <td rowspan="4" width="150" class="order-recipient">
                                 <div><strong>Recipient:</strong></div>
-                                <div>null</div>
+                                <div> {{ $order -> recipient }} </div>
                             </td>
                         </tr>
                         <tr>
@@ -41,30 +57,36 @@
                                 <h4>Item(s) Ordered</h4>
                                 <table class="ordered-items">
                                     <tbody>
-                                        <tr>
-                                            <td width="50">
-                                                <img src={{ CDN_SERVER }}"/images/smarty/shop/products/100x100/p13.jpg" alt="Thumb" width="50">
-                                            </td>
-                                            <td><span>DomiLamp</span><br><small>American WALNUT</small></td>
-                                            <td>x 5</td>
-                                        </tr>
+                                        @foreach($order -> detail as $item)
+                                                <tr>
+                                                    <td width="50">
+                                                        <img src="{{ CDN_SERVER . $item -> thumb }}" alt="Thumb" width="50">
+                                                    </td>
+                                                    <td><span>{{ $item -> product }}</span><br><small>{{ $item -> sku }}</small></td>
+                                                    <td>x {{ $item -> quantity }}</td>
+                                                </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </td>
                         </tr>
                         <tr>
                             <td class="text-right order-detail-payment-detail">
-                                <div>Item(s) Subtotal: <span class="order-detail-payment-amount">$660.00</span></div>
-                                <div>Discount: <span class="order-detail-payment-amount">-$250.00</span></div>
-                                <div>Shipping: <span class="order-detail-payment-amount">$90.00</span></div>
+                                <div>Item(s) Subtotal: <span class="order-detail-payment-amount">{{ $order -> cur_symbol . number_format($order -> subtotal / 100, 2) }}</span></div>
+                                <div>Discount: <span class="order-detail-payment-amount">-{{ $order -> cur_symbol . number_format($order -> discount / 100, 2) }}</span></div>
+                                <div>Shipping: <span class="order-detail-payment-amount">{{ $order -> cur_symbol . number_format($order -> shipping / 100, 2) }}</span></div>
                                 <div>----------------------------------</div>
-                                <div class="order-detail-payment-total">Grand Total: <span class="text-danger order-detail-payment-amount">$500</span></div>
+                                <div class="order-detail-payment-total">Grand Total:
+                                    <span class="text-danger order-detail-payment-amount">
+                                        {{ $order -> cur_symbol . number_format($order -> total / 100, 2) }}
+                                    </span>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div><strong>Delivery Address:</strong></div>
-                                null
+                                {{ $order -> address }}
                             </td>
                         </tr>
                         </tbody>

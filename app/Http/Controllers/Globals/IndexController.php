@@ -11,18 +11,11 @@
 namespace App\Http\Controllers\Globals;
 
 
-use Illuminate\Http\Request;
-
 class IndexController extends GlobalController
 {
     public function showIndex()
     {
         return view('global.index', ['productId' => '6402415426629795841']);
-    }
-
-    public function showContact()
-    {
-        return view('global.contact');
     }
 
 

@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-4">
             <!-- Links -->
-            <h4 class="letter-spacing-1">Links</h4>
+            <h4 class="letter-spacing-1"></h4>
             <ul class="list-unstyled">
                 <li><a href="{{ route(SITE . 'Index') }}">Home</a></li>
                 <li><a href="{{ route(SITE . 'Contact') }}">Contact</a></li>

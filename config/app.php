@@ -117,6 +117,21 @@ return [
     'static' => [
         'version' => env('APP_ENV') === 'production' ? env('APP_STATIC_VERSION') : time()
     ],
+
+    'strip' => [
+        'sk' => env('STRIPE_PAYMENT_ENV') == 'live' ? env('STRIPE_LIVE_SK') : env('STRIPE_TEST_SK'),
+        'pk' => env('STRIPE_PAYMENT_ENV') == 'live' ? env('STRIPE_LIVE_PK') : env('STRIPE_TEST_PK'),
+        'wh' => env('STRIPE_PAYMENT_ENV') == 'live' ? env('STRIPE_LIVE_WEB_HOOK_SECRET') : env('STRIPE_TEST_WEB_HOOK_SECRET'),
+    ],
+
+    'order' => [
+        'status' => [
+            -999 => '支付失败',
+            0 => '等待支付',
+            1 => '已支付',
+            2 => '已发货',
+        ]
+    ],
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

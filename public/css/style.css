@@ -1,4 +1,15 @@
 /**
+    Common
+ */
+
+body {
+    font-size:100% !important;
+}
+
+section {
+    padding: 50px 0;
+}
+/**
     Common header css
  */
 .header-logo-image {
@@ -136,6 +147,134 @@
     margin-top: 10px;
 }
 
+.self-placeholder {
+    opacity: 0.7;
+    position: fixed;
+    z-index: 9999999;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: #fff;
+}
+
+.self-placeholder span.loader {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+    font-size: 10px;
+    text-indent: -12345px;
+    border-top: 1px solid rgba(0,0,0, 0.08);
+    border-right: 1px solid rgba(0,0,0, 0.08);
+    border-bottom: 1px solid rgba(0,0,0, 0.08);
+    border-left: 1px solid rgba(0,0,0, 0.5);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-animation: spinner 700ms infinite linear;
+    -moz-animation: spinner 700ms infinite linear;
+    -ms-animation: spinner 700ms infinite linear;
+    -o-animation: spinner 700ms infinite linear;
+    animation: spinner 700ms infinite linear;
+    z-index: 100001;
+}
+
+/**
+    Product Introduce
+ */
+.intro-block {
+    width: 100%;
+    font-size: 2vw;
+    position: absolute;
+}
+
+.intro-block p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.domilamp-overview-title {
+    font-size: 7vw;
+    margin-top: 15vw !important;
+    color: #ffffff
+}
+
+.domilamp-overview-second-title {
+    color: #757575;
+    font-size: 4vw;
+    margin-top: 6vw !important;
+}
+
+.domilamp-overview-light p{
+    font-size: 5vw;
+    margin-top: 5vw
+}
+
+.intro-block-lights {
+    font-size: 2.5vmin;
+    word-spacing: -6px;
+}
+
+.intro-block-lights > span {
+    word-spacing: 0;
+}
+
+.domilamp-overview-wood {
+    margin-top: 5vh;
+    margin-right: 5vh;
+    font-size: 3vw;
+}
+
+.domilamp-overview-wood-title {
+    background-color: #9a938b;
+    font-size: 4vw;
+    color: #000;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+}
+
+.domilamp-overview-wood-eg {
+    position:relative;
+    margin-top: 15%;
+    left:-30%;
+    text-shadow:1px 1px 1px #000;
+    padding:10px 0;
+    font-size: 2vw;
+}
+
+.domilamp-overview-wood-eg-title {
+    font-size: 3.2vw;
+}
+
+.domilamp-overview-cap {
+    position:relative;
+    left: 50%;
+    margin-top: 10% !important;
+}
+
+.domilamp-overview-cap-title,
+.domilamp-overview-rotation-title,
+.domilamp-overview-vibration-title {
+    font-size: 4vw;
+}
+
+.domilamp-overview-rotation {
+    position:relative;
+    left: 10%;
+    margin-top: 15% !important;
+}
+
+
+.domilamp-overview-vibration {
+    position: relative;
+    left: 60%;
+    margin-top: 18% !important;
+}
+
 /**
     Product detail
  */
@@ -195,6 +334,13 @@ table.ordered-items td {
 .order-detail-payment-total {
     font-size: 24px;
     font-weight: bold;
+}
+
+/**
+    checkout form
+ */
+.invalid-feedback {
+    color: #bf6464;
 }
 /**
     Backers modal

@@ -1,9 +1,9 @@
 @extends('layouts.common')
 @section('main')
-<section>
+<section class="mt-50 mb-50">
     <div class="container">
         @if(isset($items))
-            <form action="{{ route(SITE . 'CheckoutForm') }}" method="post">
+            <div class="cart-form">
                 <!-- CART -->
                 <div class="row">
                     <!-- LEFT -->
@@ -23,7 +23,7 @@
                                     <tr>
                                         <td>
                                             <div class="cart_img float-left fw-100 p-10 text-left">
-                                                <img src={{ CDN_SERVER }}"/images/smarty/shop/products/100x100/p13.jpg" alt="" width="80" />
+                                                <img src="{{ CDN_SERVER . $item -> thumb}}" alt="" width="80" />
                                             </div>
                                             <a href="{{ route(SITE . 'Product', ['id' => $item -> product_id]) }}" class="product_name">
                                                 <span>{{ $item -> product }}</span>
@@ -33,7 +33,7 @@
                                         </td>
                                         <td>
                                             <div class="qty form-inline">
-                                                <input class="item-count text-center" data-sku="{{ $sku }}" data-update-url="{{ route(SITE . 'UpdatingToShoppingCart', ['sku' => $sku]) }}" type="number" value="{{ $item -> count }}" name="qty" maxlength="2" max="99" min="1" /> &times;
+                                                <input class="item-count text-center" data-sku="{{ $sku }}" data-sku-price="{{ $item -> price }}" data-update-url="{{ route(SITE . 'UpdatingToShoppingCart', ['sku' => $sku]) }}" type="number" value="{{ $item -> count }}" name="qty" maxlength="2" max="99" min="1" /> &times;
                                                 {{ $item -> cur_symbol .  number_format($item -> price / 100, 2) }}
                                             </div>
                                         </td>
@@ -74,7 +74,7 @@
                                     <strong class="float-left">Subtotal:</strong>
                                 </span>
                                     <span class="clearfix">
-                                    <span class="float-right discount line-through">{{ $price['cur_symbol'] }}<span>{{ number_format($price['discount'] / 100, 2) }}</span></span>
+                                    <span class="float-right discount line-through">-{{ $price['cur_symbol'] }}<span>{{ number_format($price['discount'] / 100, 2) }}</span></span>
                                     <span class="float-left">Discount:</span>
                                 </span>
                                     <span class="clearfix">
@@ -87,7 +87,7 @@
                                     <strong class="float-left">TOTAL:</strong>
                                 </span>
                                     <hr>
-                                    <button class="btn btn-primary btn-lg btn-block fs-15">
+                                    <button class="btn btn-primary btn-lg btn-block fs-15 cart-checkout-button" data-create-order-url="{{ route(SITE . 'CreateOrder') }}" type="button">
                                         <strong><i class="fa fa-mail-forward"></i> Checkout</strong>
                                     </button>
                                 </div>
@@ -95,11 +95,10 @@
 
                         </div>
                         <!-- /TOGGLE -->
-
                     </div>
                 </div>
                 <!-- /CART -->
-            </form>
+            </div>
         @endif
         <!-- EMPTY CART -->
         <div class="card card-default {{ isset($items) ? 'hide-cart-default' : ''}}">

@@ -1,11 +1,13 @@
 $(document).ready(function () {
     init();
     navCollapseControl();
+    domilampLightTextOnImage();
     windowsResize();
     productOptionsSelection();
     productOption();
-    cartCountDisplay();
+    headerCartCountDisplay();
     calculateCartPrice();
+    checkout();
 });
 
 /**
@@ -45,6 +47,26 @@ function navCollapseControl() {
 }
 
 /**
+ * DomiLamp Light 图片上的位置控制
+ */
+function domilampLightTextOnImage() {
+    let light = $('.domilamp-overview-light');
+    if (light.length > 0) {
+        let zoomRate = light.find('img').width() / 1440;
+        let introMark = $('.intro-block-lights');
+        introMark.css('margin-top', zoomRate * (540 + 70));
+        introMark.css('padding-left', zoomRate * 70);
+        introMark.css('padding-right', zoomRate * 70);
+        introMark.find('span').each(function (index, element) {
+            $(element).css('width', zoomRate * 260);
+            $(element).css('padding-left', zoomRate * 10);
+            $(element).css('padding-right', zoomRate * 10);
+        });
+    }
+
+}
+
+/**
  * 产品SKU选择
  */
 function productOptionsSelection() {
@@ -69,7 +91,7 @@ function productOptionsSelection() {
                 success: function (data) {
                     if (data.status) {
                         $('.product-original-price').addClass('line-through');
-                        $('.product-price').html(data.data.currency + ': ' + data.data.cur_symbol + (data.data.price / 100).toFixed(2));
+                        $('.product-price').html(data.data.currency + ': ' + data.data.cur_symbol + parseFormatNum(data.data.price / 100, 2));
                     } else {
                         alert('Getting product price error.')
                     }
@@ -101,30 +123,40 @@ function productOption() {
     });
 }
 
-function cartCountDisplay() {
+/**
+ * 一级header 购物车 icon 的数字
+ */
+function headerCartCountDisplay() {
     let addToCartResult = $('.add-to-cart-result');
     if (addToCartResult.length > 0 && addToCartResult.data('items-count') > 0) {
         $('.quick-cart').find('.badge.badge-aqua.badge-corner').html(addToCartResult.data('items-count'));
     }
 }
 
+/**
+ * 计算购物车价格
+ */
 function calculateCartPrice() {
     $('.item-count').on('change', function () {
-        if ($(this).val() > 99 || $(this).val() < 1) {
-            alert('请输入1-99之间的数字！')
-        } else {
-            $.ajax({
-                type: 'POST',
-                url: $(this).data('update-url'),
-                data: {'count': $(this).val(), 'delivery': $('.cart-delivery-country').val()},
-                success: function (data) {
-                    callback(data);
-                },
-                error: function () {
-                    alert('request error happened.')
-                },
-            });
+        if ($(this).val() > 99) {
+            alert('请输入1-99之间的数字！');
+            $(this).val(99);
+        } else if ($(this).val() < 1) {
+            alert('请输入1-99之间的数字！');
+            $(this).val(1);
         }
+
+        $.ajax({
+            type: 'POST',
+            url: $(this).data('update-url'),
+            data: {'count': $(this).val(), 'delivery': $('.cart-delivery-country').val()},
+            success: function (data) {
+                callback(data);
+            },
+            error: function () {
+                alert('request error happened.')
+            },
+        });
     });
     $('.cart-delivery-country').on('change', function () {
         $.ajax({
@@ -142,6 +174,7 @@ function calculateCartPrice() {
 
     $('.cart-delete-item').on('click', function () {
         let self = $(this);
+        let cartCountContainer = $('.badge.badge-aqua.badge-corner');
         $.ajax({
             type: 'POST',
             url: $(this).data('update-url'),
@@ -149,10 +182,13 @@ function calculateCartPrice() {
             success: function (data) {
                 if (data.status) {
                     if (data.data.total === 0)  {
-                        self.parents('form').remove();
+                        self.parents('.cart-form').remove();
+                        cartCountContainer.html('');
                         $('.card.card-default.hide-cart-default').removeClass('hide-cart-default');
                     } else  {
                         self.parents('tr').remove();
+
+                        $('.badge.badge-aqua.badge-corner').html(cartCountContainer.html() - 1);
                     }
                 }
                 callback(data);
@@ -164,10 +200,13 @@ function calculateCartPrice() {
     });
     function callback(response) {
         if (response.status) {
-            $('.total-budget > span').html((response.data.subtotal / 100).toFixed(2));
-            $('.discount > span').html((response.data.discount / 100).toFixed(2));
-            $('.shipping > span').html((response.data.shipping / 100).toFixed(2));
-            $('.pay-amount > strong > span').html((response.data.total / 100).toFixed(2));
+            $('.total-budget > span').html(parseFormatNum(response.data.subtotal / 100, 2));
+            $('.discount > span').html(parseFormatNum(response.data.discount / 100, 2));
+            $('.shipping > span').html(parseFormatNum(response.data.shipping / 100, 2));
+            $('.pay-amount > strong > span').html(parseFormatNum(response.data.total / 100, 2));
+            $('.item-count').each(function (index, element) {
+                $(element).parents('tr').find('.item-price').html(parseFormatNum($(element).val() * $(element).data('sku-price') / 100, 2));
+            });
         } else {
             alert(response.message);
         }
@@ -175,7 +214,69 @@ function calculateCartPrice() {
 }
 
 /**
- * over write _topNav Function
+ * checkout
+ */
+function checkout() {
+    $('.cart-form').on('submit', function () {
+        return false;
+    });
+    $('.cart-checkout-button').on('click', function () {
+        let placeholder = $('.self-placeholder');
+        placeholder.removeClass('hide');
+        let data = {'delivery' : $('.cart-delivery-country').val(), 'data': []};
+        $('.item-count').each(function (index, element) {
+            data.data.push({'sku': $(element).data('sku'), 'count': $(element).val()});
+        });
+        $.ajax({
+            type: 'POST',
+            url: $(this).data('create-order-url'),
+            data: data,
+            success: function (data) {
+                if (data.status) {
+                    location.href = data.data.url;
+                } else {
+                    alert(data.message);
+                    placeholder.addClass('hide');
+                }
+            },
+            error: function () {
+                alert('Invalid request.');
+                placeholder.addClass('hide');
+
+            }
+        })
+    });
+}
+
+/**
+ * 金额数字格式化
+ * @param number
+ * @param n
+ * @returns {string}
+ */
+function parseFormatNum(number, n){
+    if(n !== 0 ){
+        n = (n > 0 && n <= 20) ? n : 2;
+    }
+    number = parseFloat((number + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
+    let sub_val = number.split(".")[0].split("").reverse();
+    let sub_xs = number.split(".")[1];
+
+    let show_html = "";
+    for (i = 0; i < sub_val.length; i++){
+        show_html += sub_val[i] + ((i + 1) % 3 === 0 && (i + 1) !== sub_val.length ? "," : "");
+    }
+
+    if(n === 0 ){
+        return show_html.split("").reverse().join("");
+    }else{
+        return show_html.split("").reverse().join("") + "." + sub_xs;
+    }
+
+}
+
+/**
+ * over write functions
  * @private
  */
 function _topNav() {
