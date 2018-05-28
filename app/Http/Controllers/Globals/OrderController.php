@@ -219,6 +219,7 @@ class OrderController extends GlobalController
                 -> where('orders.is_delete', 0)
                 -> first();
             if (is_null($order)) {
+                return view('global.orders.inquiry', ['result' => false, 'message' => '订单信息不存在，请重试！']);
 
             } else {
                 $order -> express = DB::connection('mysql_backend')
@@ -234,6 +235,7 @@ class OrderController extends GlobalController
                     $order -> detail = $detail;
                     return view('global.orders.detail', ['order' => $order, 'result' => true]);
                 } else {
+                    return view('global.orders.inquiry', ['result' => false, 'message' => '订单信息异常，请发送邮件到service@intellisn.com，提供您的订单编号以便查询。']);
 
                 }
             }
