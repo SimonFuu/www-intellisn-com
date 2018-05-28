@@ -69,7 +69,7 @@
         </div>
         <div>
             <div class="intro-block text-white">
-                <div class="inline-block ">
+                <div class="inline-block domilamp-overview-vibration">
                     <p class="domilamp-overview-vibration-title">静音震动 及时反馈</p>
                     <p class="mt-10">最亮一刻 指尖告诉您</p>
                 </div>
