@@ -86,16 +86,38 @@
     <hr>
     <div id="tech">
         <div>
+            <div class="intro-block text-white">
+                <div class="inline-block domilamp-tech-1 text-center">
+                    <p class="domilamp-tech-1-title">
+                        <b>WORLD'S FIRST</b>
+                    </p>
+                    <p><b>Led lamp</b></p>
+                    <p><b>with 8 lighting boards</b></p>
+                    <p><small><b>glowing from different angles</b></small></p>
+                    <p><small><b>for a uniform lighting effect</b></small></p>
+                    <p class="mt-15 text-gray">32 LEDs (1.3W Max)</p>
+                    <p class="text-gray">for Candle Light</p>
+                    <p class="domilamp-tech-1-math-symbol text-gray">+</p>
+                    <p class="text-gray">96 LEDs (640lm / 7.2W Max)</p>
+                    <p class="text-gray">for Warm White</p>
+                    <p class="domilamp-tech-1-math-symbol text-gray">+</p>
+                    <p class="text-gray">96 LEDs (810lm / 77W Max)</p>
+                    <p class="text-gray">for Cool White</p>
+                    <p class="domilamp-tech-1-math-symbol text-gray">=</p>
+                    <p class="text-red">224 LEDs</p>
+                </div>
+            </div>
             <img src="{{ CDN_SERVER . '/images/introduce/domilamp/tech/1.png' }}" width="100%" alt="">
         </div>
         <div>
-            <img src="{{ CDN_SERVER . '/images/introduce/domilamp/tech/2.png' }}" width="100%" alt="">
+            <img src="{{ CDN_SERVER . '/images/introduce/domilamp/tech/2.jpeg' }}" width="100%" alt="">
         </div>
         <div>
-            <img src="{{ CDN_SERVER . '/images/introduce/domilamp/tech/3.png' }}" width="100%" alt="">
+            <img src="{{ CDN_SERVER . '/images/introduce/domilamp/tech/3.jpg' }}" width="100%" alt="">
         </div>
         <div>
-            <img src="{{ CDN_SERVER . '/images/introduce/domilamp/tech/4.png' }}" width="100%" alt="">
+            <img src="{{ CDN_SERVER . '/images/introduce/domilamp/tech/4.jpg' }}" width="100%" alt="">
         </div>
     </div>
+    <hr>
 @endsection

@@ -268,13 +268,27 @@ section {
     margin-top: 15% !important;
 }
 
-
 .domilamp-overview-vibration {
     position: relative;
     left: 60%;
     margin-top: 18% !important;
 }
 
+.domilamp-tech-1 {
+    position: relative;
+    width: 50%;
+    margin-left: 50%;
+    margin-top: 4% !important;
+}
+
+.domilamp-tech-1-title {
+    color: #31e668;
+    font-size: 5vw;
+}
+
+.domilamp-tech-1-math-symbol {
+    line-height: 1.3vw;
+}
 /**
     Product detail
  */
