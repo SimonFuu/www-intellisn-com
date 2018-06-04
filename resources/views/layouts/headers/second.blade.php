@@ -29,7 +29,7 @@
                         </li>
                         <li class="sub-nav-header-item">
                             <button data-toggle="modal" data-target="#backersModal">
-                                ALL BACKERS
+                                All Backers
                             </button>
                         </li>
                         <li>

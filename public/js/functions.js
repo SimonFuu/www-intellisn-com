@@ -54,7 +54,7 @@ function domilampLightTextOnImage() {
     if (light.length > 0) {
         let zoomRate = light.find('img').width() / 1440;
         let introMark = $('.intro-block-lights');
-        introMark.css('margin-top', zoomRate * (540 + 70));
+        introMark.css('margin-top', zoomRate * (480 + 70));
         introMark.css('padding-left', zoomRate * 70);
         introMark.css('padding-right', zoomRate * 70);
         introMark.find('span').each(function (index, element) {

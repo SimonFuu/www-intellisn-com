@@ -122,6 +122,7 @@ section {
 
 #topMain.nav-pills>li>button:hover {
     background-color: #f5f5f5;
+    line-height: 59px;
 }
 /**
     Common footer css
@@ -198,19 +199,23 @@ section {
 
 .domilamp-overview-title {
     font-size: 7vw;
-    margin-top: 15vw !important;
+    /*margin-top: 15vw !important;*/
+    margin-top: 17vw !important;
     color: #ffffff
 }
 
 .domilamp-overview-second-title {
     color: #757575;
-    font-size: 4vw;
-    margin-top: 6vw !important;
+    /*font-size: 4vw;*/
+    font-size: 3vw;
+    /*margin-top: 6vw !important;*/
+    margin-top: 2vw !important;
 }
 
 .domilamp-overview-light p{
     font-size: 5vw;
-    margin-top: 5vw
+    /*margin-top: 5vw*/
+    margin-top: 1vw;
 }
 
 .intro-block-lights {
@@ -223,9 +228,15 @@ section {
 }
 
 .domilamp-overview-wood {
+    /*margin-top: 5vh;*/
+    /*margin-right: 5vh;*/
+    /*font-size: 3vw;*/
     margin-top: 5vh;
-    margin-right: 5vh;
-    font-size: 3vw;
+    /* margin-right: 5vh; */
+    font-size: 3.5vmin;
+    width: 70%;
+    position: relative;
+    left: 27%;
 }
 
 .domilamp-overview-wood-title {
@@ -253,12 +264,13 @@ section {
 .domilamp-overview-cap {
     position:relative;
     left: 50%;
-    margin-top: 10% !important;
+    margin-top: 13% !important;
 }
 
 .domilamp-overview-cap-title,
 .domilamp-overview-rotation-title,
-.domilamp-overview-vibration-title {
+.domilamp-overview-vibration-title,
+.domilamp-domi-title {
     font-size: 4vw;
 }
 
@@ -269,9 +281,18 @@ section {
 }
 
 .domilamp-overview-vibration {
+    width: 45%;
     position: relative;
-    left: 60%;
-    margin-top: 18% !important;
+    left: 55%;
+    margin-top: 13% !important;
+    padding-right: 15px;
+}
+
+.domilamp-domi {
+    position: relative;
+    left: 40%;
+    width: 50%;
+    margin-top: 16% !important;
 }
 
 .domilamp-tech-1 {

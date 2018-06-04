@@ -3,20 +3,24 @@
     <div id="overview">
         <div>
             <div class="text-center intro-block text-white">
-                <p class="domilamp-overview-title">超智趣·木作·氛围灯</p>
-                <p class="domilamp-overview-second-title">化身骨牌的灯，随心编排，百转千回，一触即发</p>
+                <p class="domilamp-overview-title">DomiLamp</p>
+                <p class="domilamp-overview-second-title">
+                    An artistic wooden lamp with simple look and feel <br />
+                    A smart lamp with unique ability to interact with peers without any configurations
+                    An interesting lamp, acting as dominoes
+                </p>
             </div>
             <img src="{{ CDN_SERVER . '/images/introduce/domilamp/Intro.png' }}" width="100%" alt="">
         </div>
         <div class="domilamp-overview-light">
             <div class="text-center intro-block text-white">
-                <p class="text-dark" style="">五种光效标题</p>
+                <p class="text-dark">5 colors, 8 directions, offering you a desirable atmosphere</p>
                 <div class="intro-block-lights">
-                    <span class="text-dark inline-block">珍珠白</span>
-                    <span class="text-dark inline-block">象牙白</span>
-                    <span class="text-dark inline-block">牛奶金</span>
-                    <span class="text-dark inline-block">浅琥珀</span>
-                    <span class="text-dark inline-block">烛光</span>
+                    <span class="text-dark inline-block">Candlelight</span>
+                    <span class="text-dark inline-block">Golden Milk</span>
+                    <span class="text-dark inline-block">Ivory White</span>
+                    <span class="text-dark inline-block">Light Amber</span>
+                    <span class="text-dark inline-block">Pearl White</span>
                 </div>
             </div>
             <img src="{{ CDN_SERVER . '/images/introduce/domilamp/light.png' }}" width="100%" alt="">
@@ -24,35 +28,31 @@
         <div>
             <div class="text-center intro-block text-white">
                 <div class="text-right domilamp-overview-wood">
-                    <p class="inline-block domilamp-overview-wood-title">精工木作</p>
-                    <p class="mt-10 text-gray">精细雕刻，一体成型实木底座</p>
-                    <p>美国胡桃|巴西花梨</p>
+                    <p class="inline-block domilamp-overview-wood-title">Wood Works</p>
+                    <p style="margin-top: 1vh"><b>A wooden lamp with an exquisite base engraved from a complete solid wood, providing you with the best experience.</b></p>
+                    <p style="margin-top: 1vh">American Walnut / Brazilian Rosewood</p>
+                    <p>Natural Oil Finish</p>
+                    <p>Handheld Design</p>
                 </div>
-                <div class="text-left inline-block bold text-gray domilamp-overview-wood-eg">
-                    <p class="domilamp-overview-wood-eg-title">
-                        美国胡桃木
-                    </p>
-                    <p>
-                        原产地：北美洲
-                    </p>
-                </div>
+                {{--<div class="text-left inline-block bold text-gray domilamp-overview-wood-eg">--}}
+                    {{--<p class="domilamp-overview-wood-eg-title">--}}
+                        {{--美国胡桃木--}}
+                    {{--</p>--}}
+                    {{--<p>--}}
+                        {{--原产地：北美洲--}}
+                    {{--</p>--}}
+                {{--</div>--}}
 
             </div>
             <img src="{{ CDN_SERVER . '/images/introduce/domilamp/wood.png' }}" width="100%" alt="">
         </div>
         <div>
-
-            <img src="{{ CDN_SERVER . '/images/introduce/domilamp/Customcap.png' }}" width="100%" alt="">
-        </div>
-        <div>
             <div class="intro-block text-white">
                 <div class="text-left inline-block domilamp-overview-cap">
-                    <p class="domilamp-overview-cap-title"><strong>艺术灯罩 晶莹剔透</strong></p>
-                    <p class="mt-10">聚碳酸酯(PC)灯罩含光扩散剂</p>
-                    <p>360度旋转，仿老式调光器</p>
-                    <p>双向24步操作</p>
-                    <p>实木顶盖</p>
-                    <p>通风槽</p>
+                    <p class="domilamp-overview-cap-title"><strong>Glass-like shade</strong></p>
+                    <p class="mt-10">Polycarbonate（PC）Shade w/ Light Diffuser</p>
+                    <p>Solid Wood Cap</p>
+                    <p>Ventilation Sink</p>
                 </div>
             </div>
             <img src="{{ CDN_SERVER . '/images/introduce/domilamp/shade.png' }}" width="100%" alt="">
@@ -60,9 +60,9 @@
         <div>
             <div class="intro-block text-white">
                 <div class="inline-block text-black domilamp-overview-rotation">
-                    <p class="domilamp-overview-rotation-title"><strong>360度双向无极旋转</strong></p>
-                    <p class="mt-10">复古优雅 致敬经典</p>
-                    <p>指尖温柔 华彩尽显</p>
+                    <p class="domilamp-overview-rotation-title"><strong>Rotation</strong></p>
+                    <p class="mt-10">Bi-directional 24-step Manipulation</p>
+                    <p>Operating like an old-fashion dimmer</p>
                 </div>
             </div>
             <img src="{{ CDN_SERVER . '/images/introduce/domilamp/Rotation.png' }}" width="100%" alt="">
@@ -70,8 +70,8 @@
         <div>
             <div class="intro-block text-white">
                 <div class="inline-block domilamp-overview-vibration">
-                    <p class="domilamp-overview-vibration-title">静音震动 及时反馈</p>
-                    <p class="mt-10">最亮一刻 指尖告诉您</p>
+                    <p class="domilamp-overview-vibration-title">Comfortable vibration feedback</p>
+                    <p class="mt-10">The internal vibration motor will get the fingers notified when each light is adjusted to the maximum level.</p>
                 </div>
             </div>
             <img src="{{ CDN_SERVER . '/images/introduce/domilamp/Vibration.png' }}" width="100%" alt="">
@@ -80,10 +80,24 @@
     <hr>
     <div id="domi">
         <div>
+            <div class="intro-block text-white">
+                <div class="inline-block text-black domilamp-domi">
+                    <p class="domilamp-domi-title"><strong>"Domi" Experience</strong></p>
+                    <p class="mt-10">Toggle Button for "Domi" Availablity</p>
+                    <p>Light Synchronization between Lamps</p>
+                    <p>Automatic Brightness Alignment</p>
+                </div>
+            </div>
             <img src="{{ CDN_SERVER . '/images/introduce/domilamp/Dom.png' }}" width="100%" alt="">
         </div>
+        <div class="mt-20 mb-20 container" style="font-size: 3vmin">
+            With "Domi" enabled, when two or more lamps are within a certain distance(about <span class="text-red">26ft</span>),
+            a light change of one lamp could be easily transmitted to others around it.
+            Then, those lamps which received the change would adjust their light color and intensity to match the first lamp's.
+            This effect would then spread from those lamps to outer lamps if existed.
+            The amazing thing is that "Domi" could <strong>work with any number of DomiLamps, without any configurations.</strong>
+        </div>
     </div>
-    <hr>
     <div id="tech">
         <div>
             <div class="intro-block text-white">
