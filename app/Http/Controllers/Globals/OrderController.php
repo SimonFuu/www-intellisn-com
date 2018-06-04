@@ -165,7 +165,7 @@ class OrderController extends GlobalController
     public function showReCheckoutForm($id = 0)
     {
         $order = DB::connection('mysql_backend') -> table('orders')
-            -> select('cur_symbol', 'car', 'total', 'id')
+            -> select('cur_symbol', 'car', 'total', 'id', 'a_id')
             -> where('status', 0)
             -> where('is_delete', 0)
             -> whereNotNull('a_id')
@@ -175,6 +175,22 @@ class OrderController extends GlobalController
             return abort(404);
         }
 
+        $delivery = DB::connection('mysql_backend') -> table('customers_address')
+            -> select('customers_address.name',
+                'customers_address.phone',
+                'customers_address.country',
+                'customers_address.address1',
+                'customers_address.address2',
+                'customers_address.city',
+                'customers_address.state',
+                'customers_address.zip',
+                'customers.email'
+            )
+            -> leftJoin('customers', 'customers.id', '=', 'customers_address.c_id')
+            -> where('customers_address.is_delete', 0)
+            -> where('customers_address.id', $order -> a_id)
+            -> first();
+//        dd($delivery);
 
         $now = date('Y');
         $years = [];
@@ -199,7 +215,8 @@ class OrderController extends GlobalController
             'ccExpYears' => $years,
             'ccExpMonths' => $months,
             'orderId' => $id,
-            'order' => $order
+            'order' => $order,
+            'delivery' => $delivery
         ]);
     }
     public function showInquiryForm(Request $request)

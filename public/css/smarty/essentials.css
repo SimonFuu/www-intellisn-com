@@ -3423,7 +3423,7 @@ img.mfp-img {
 
 /* mouse grab icon */
 .grabbing { 
-    cursor:url(../images/_smarty/grabbing.png) 8 8, move;
+    cursor:url(../../images/smarty/grabbing.png) 8 8, move;
 }
 
 /* fix */

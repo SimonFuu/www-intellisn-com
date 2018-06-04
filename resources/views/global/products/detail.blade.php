@@ -15,10 +15,10 @@
                     @if($product -> thumbs)
                         <!-- Thumbnails (required height:100px) -->
                         <div data-for="zoom-primary" class="zoom-more owl-carousel owl-padding-3 featured" data-plugin-options='{"singleItem": false, "autoPlay": false, "navigation": true, "pagination": false}'>
-                            @foreach($product -> thumbs as $thumb)
-                            <a class="thumbnail active" href="{{ CDN_SERVER . $thumb -> value  }}">
-                                <img src="{{ CDN_SERVER . $thumb -> value }}" height="100" alt="" />
-                            </a>
+                            @foreach($product -> thumbs as $key => $thumb)
+                                <a class="thumbnail {{ $key == 0 ? 'active' : '' }}" href="{{ CDN_SERVER . $thumb -> value  }}">
+                                    <img src="{{ CDN_SERVER . $thumb -> value }}" height="100" alt="" />
+                                </a>
                             @endforeach
                         </div>
                         <!-- /Thumbnails -->
@@ -28,7 +28,6 @@
                 <!-- /IMAGE -->
                 <!-- ITEM DESC -->
                 <div class="col-lg-5 col-sm-8">
-
                     <!-- /buttons -->
                     <!-- price -->
                     <div class="shop-item-price">

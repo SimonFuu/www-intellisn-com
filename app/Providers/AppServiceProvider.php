@@ -54,18 +54,22 @@ class AppServiceProvider extends ServiceProvider
     private function countCartNumber()
     {
         view() -> composer('layouts.headers.first', function($view) {
-            try {
-                $cart = Cookie::get('cart');
-                if (substr($cart, 0 ,1) !== '{') {
-                    $cart = decrypt($cart);
-
+            $cart = Cookie::get('cart');
+            if ($cart) {
+                try {
+                    if (substr($cart, 0 ,1) !== '{') {
+                        $cart = decrypt($cart);
+                    }
+                    $cartItems = json_decode($cart, true);
+                } catch (\Exception $e) {
+                    Log::warning('购物车反序列化失败！' . $e -> getMessage());
+                    $cartItems = [];
                 }
-                $cartItems = json_decode($cart, true);
-            } catch (\Exception $e) {
-                Log::warning('购物车反序列化失败！' . $e -> getMessage());
-                $cartItems = [];
+                $count = count($cartItems);
+
+            } else {
+                $count = 0;
             }
-            $count = count($cartItems);
             $view -> with('cartItemsCount', $count === 0 ? '' : ($count > 9 ? '9+' : $count));
         });
     }

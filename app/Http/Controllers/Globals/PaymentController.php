@@ -190,12 +190,15 @@ class PaymentController extends GlobalController
             return redirect(route(SITE . 'CheckoutResult')) -> with('success', $request -> name);
         } elseif($result['status'] == 0) {
             // 支付失败
-            return redirect(route(SITE . 'ReCheckoutForm', ['id' => $order -> id])) -> with('error', $result['response']);
+            Log::error(sprintf('【支付失败】订单：%s，错误信息：%s', $order -> id, $result['response']));
+            return redirect(route(SITE . 'ReCheckoutForm', ['id' => $order -> id])) -> with('error', json_decode($result['response'], true)['failure_message']);
         } elseif($result['status'] == -1) {
             // redirect ?
+            Log::error(sprintf('【支付失败】订单：%s，错误信息：%s', $order -> id, $result['response']));
             return ;
         } else {
             // -999 卡片信息错误
+            Log::error(sprintf('【支付失败】订单：%s，错误信息：%s', $order -> id, $result['response']));
             return redirect(route(SITE . 'ReCheckoutForm', ['id' => $order -> id])) -> with('error', $result['response']);
         }
     }
@@ -211,6 +214,15 @@ class PaymentController extends GlobalController
         }
         $rules = [
             'id' => 'required|exists:mysql_backend.orders,id',
+            'name' => 'required|max:100|min:1',
+            'email' => 'required|email|max:150|min:5',
+            'phone' => 'required|max:20|min:5',
+            'address1' => 'required|max:255',
+            'address2' => 'max:255',
+            'city' => 'required|max:100|min:2',
+            'state' => 'required|max:100|min:2',
+            'zip' => 'required|max:20|min:5',
+            'country' => 'required|exists:mysql_backend.orders,car,id,' . $request -> id,
             'paymentCCName' => 'required|max:100|min:3',
             'paymentCCNumber' => 'required|max:20|min:12',
             'paymentCCExpMonth' => 'required|in:' . $months,
@@ -218,6 +230,31 @@ class PaymentController extends GlobalController
             'paymentCCCVV' => 'required|max:5|min:3',
         ];
         $messages = [
+            'id' => '订单信息异常，请重试',
+            'name.required' => '请输入收件人姓名',
+            'name.max' => '收件人姓名长度不要超过:max',
+            'name.min' => '收件人姓名长度不要少于:min',
+            'email.required' => '请输入收件人邮箱',
+            'email.email' => '输入的邮件格式不正确',
+            'email.max' => '邮件长度不能大于:max',
+            'email.min' => '订单信息异常，请重试',
+            'phone.required' => '请请输入收件人手机号',
+            'phone.max' => '收件人手机号长度不能大于:max',
+            'phone.min' => '收件人手机号长度不能小于:min',
+            'address1.required' => '请输入收件人地址 address1',
+            'address1.max' => '收件人地址 address1 长度不能大于:max',
+            'address2.max' => '收件人地址 address2 长度不能大于:max',
+            'city.required' => '请输入收件人城市',
+            'city.max' => '收件人城市长度不能大于:max',
+            'city.min' => '收件人城市长度不能小于:min',
+            'state.required' => '请输入收件人所在区域',
+            'state.max' => '收件人所在区域长度不能大于:max',
+            'state.min' => '收件人所在区域长度不能小于:min',
+            'zip.required' => '请输入收件人邮编',
+            'zip.max' => '邮编长度不能大于:max',
+            'zip.min' => '邮编长度不能小于:min',
+            'country.required' => '请选择收件人国家',
+            'country.exists' => '收件人国家与下单国家不符，请重新下单',
             'paymentCCNumber.required' => '请输入信用卡卡号',
             'paymentCCNumber.max' => '信用卡长度不能大于:max',
             'paymentCCNumber.min' => '信用卡长度不能小于:min',
@@ -246,6 +283,53 @@ class PaymentController extends GlobalController
             // 订单已经支付
             return abort(404);
         }
+        $customers = DB::table('customers')
+            -> select('id')
+            -> where('is_delete', 0)
+            -> where('email', $request -> email)
+            -> first();
+        $ids = dk_get_next_ids(3);
+        try {
+            DB::beginTransaction();
+            if (is_null($customers)) {
+                DB::table('customers') -> insert([
+                    'id' => $ids[0],
+                    'name' => $request -> name,
+                    'email' => $request -> email
+                ]);
+                $cid = $ids[0];
+            } else {
+                $cid = $customers -> id;
+            }
+            $address = [
+                'id' => $ids[1],
+                'c_id' => $cid,
+                'country' => $this -> deliveryCountries[$order -> car],
+                'name' => $request -> name,
+                'phone' => $request -> phone,
+                'address1' => $request -> address1,
+                'address2' => $request -> address2,
+                'city' => $request -> city,
+                'state' => $request -> state,
+                'zip' => $request -> zip,
+                'car' => $order -> car
+            ];
+            DB::table('customers_address') -> insert($address);
+            DB::table('orders') -> where('id', $order -> id) -> update([
+                'a_id' => $ids[1],
+                'address' => sprintf('%s, %s, %s, %s, %s, %s, %s, %s',
+                    $address['name'], $address['phone'], $address['address1'], $address['address2'],
+                    $address['city'], $address['state'], $address['zip'], $address['country']
+                ),
+            ]);
+            DB::commit();
+        } catch (\Exception $e) {
+            // 服务端保存数据失败
+            DB::rollBack();
+            Log::warning('保存订单收件地址失败 ' . $e -> getMessage());
+            return abort(500);
+        }
+
         $paymentInfo = [
             'amount' => number_format($order -> total / 100 ,2),
             'currency' => 'USD',
@@ -259,7 +343,7 @@ class PaymentController extends GlobalController
         ];
         $result = $this -> stripePay($paymentInfo, $order -> id);
         if ($result['status'] == 1) {
-            $result['id'] = dk_get_next_id();
+            $result['id'] = $ids[2];
             // 支付成功
             try {
                 DB::beginTransaction();
@@ -287,12 +371,15 @@ class PaymentController extends GlobalController
 
         } elseif($result['status'] == 0) {
             // 支付失败
-            return redirect(route(SITE . 'ReCheckoutForm', ['id' => $order -> id])) -> with('error', $result['response']);
+            Log::error(sprintf('【支付失败】订单：%s，错误信息：%s', $order -> id, $result['response']));
+            return redirect(route(SITE . 'ReCheckoutForm', ['id' => $order -> id])) -> with('error', json_decode($result['response'], true)['failure_message']);
         } elseif($result['status'] == -1) {
             // redirect
+            Log::error(sprintf('【支付失败】订单：%s，错误信息：%s', $order -> id, $result['response']));
             return ;
         } else {
             // -999 卡片信息错误
+            Log::error(sprintf('【支付失败】订单：%s，错误信息：%s', $order -> id, $result['response']));
             return redirect(route(SITE . 'ReCheckoutForm', ['id' => $order -> id])) -> with('error', $result['response']);
         }
     }
@@ -351,16 +438,16 @@ class PaymentController extends GlobalController
                     'o_id' => $orderId,
                     'status' => 0, // 支付失败
                     'response' => json_encode([
-                        'failure_code' => $response -> getData()['failure_code'],
-                        'failure_message' => $response -> getData()['failure_message'],
+                        'failure_code' => $response -> getData()['error']['code'],
+                        'failure_message' => $response -> getData()['error']['message'],
                     ]),
-                    'description' => $response -> getData()['description'],
+                    'description' => $response -> getData()['error']['doc_url'],
                     'method' => 0,  // stripe 标示
-                    'card_id' => $response -> getData()['source']['id'],
-                    'platform_time' => $response -> getData()['created'],
-                    'charge_id' => $response -> getData()['id'],
-                    'amount' => $response -> getData()['amount'],
-                    'currency' => $response -> getData()['currency']
+                    'card_id' => 'not exist because of error',
+                    'platform_time' => 'not exist because of error',
+                    'charge_id' => 'not exist because of error',
+                    'amount' => 'not exist because of error',
+                    'currency' => 'not exist because of error'
                 ];
             }
 
