@@ -219,7 +219,7 @@ section {
 }
 
 .intro-block-lights {
-    font-size: 2.5vmin;
+    font-size: 1.5vw;
     word-spacing: -6px;
 }
 
@@ -233,10 +233,9 @@ section {
     /*font-size: 3vw;*/
     /* margin-right: 5vh; */
     margin-top: 5vh;
-    font-size: 3.5vmin;
-    width: 70%;
+    width: 60%;
     position: relative;
-    left: 27%;
+    right: -38%;
 }
 
 .domilamp-overview-wood-title {
@@ -264,6 +263,7 @@ section {
 .domilamp-overview-cap {
     position:relative;
     left: 50%;
+    width: 50%;
     margin-top: 13% !important;
 }
 
@@ -277,6 +277,7 @@ section {
 .domilamp-overview-rotation {
     position:relative;
     left: 10%;
+    width: 40%;
     margin-top: 15% !important;
 }
 
@@ -382,4 +383,11 @@ table.ordered-items td {
  */
 .backers-modal-names {
 
+}
+
+/**
+    Contact Page
+ */
+.contact-intellisn-section {
+    font-size: 1.5em;
 }

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     init();
     navCollapseControl();
-    domilampLightTextOnImage();
+    // domilampLightTextOnImage();
     windowsResize();
     productOptionsSelection();
     productOption();
@@ -46,25 +46,25 @@ function navCollapseControl() {
     }
 }
 
-/**
- * DomiLamp Light 图片上的位置控制
- */
-function domilampLightTextOnImage() {
-    let light = $('.domilamp-overview-light');
-    if (light.length > 0) {
-        let zoomRate = light.find('img').width() / 1440;
-        let introMark = $('.intro-block-lights');
-        introMark.css('margin-top', zoomRate * (480 + 70));
-        introMark.css('padding-left', zoomRate * 70);
-        introMark.css('padding-right', zoomRate * 70);
-        introMark.find('span').each(function (index, element) {
-            $(element).css('width', zoomRate * 260);
-            $(element).css('padding-left', zoomRate * 10);
-            $(element).css('padding-right', zoomRate * 10);
-        });
-    }
-
-}
+// /**
+//  * DomiLamp Light 图片上的位置控制
+//  */
+// function domilampLightTextOnImage() {
+//     let light = $('.domilamp-overview-light');
+//     if (light.length > 0) {
+//         let zoomRate = light.find('img').width() / 1440;
+//         let introMark = $('.intro-block-lights');
+//         introMark.css('margin-top', zoomRate * (480 + 70));
+//         introMark.css('padding-left', zoomRate * 70);
+//         introMark.css('padding-right', zoomRate * 70);
+//         introMark.find('span').each(function (index, element) {
+//             $(element).css('width', zoomRate * 260);
+//             $(element).css('padding-left', zoomRate * 10);
+//             $(element).css('padding-right', zoomRate * 10);
+//         });
+//     }
+//
+// }
 
 /**
  * 产品SKU选择

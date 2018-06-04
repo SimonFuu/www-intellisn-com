@@ -57,7 +57,7 @@ class RouteCheck
                 define('SECOND_HEADER', 'Support');
                 break;
             case SITE . 'Contact':
-                define('SECOND_HEADER', 'Contact');
+                define('SECOND_HEADER', 'Contacting Intellisn');
                 break;
             case SITE . 'CheckoutForm':
                 define('SECOND_HEADER', 'Checkout');

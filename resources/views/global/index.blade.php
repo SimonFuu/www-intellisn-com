@@ -15,13 +15,6 @@
         <div class="domilamp-overview-light">
             <div class="text-center intro-block text-white">
                 <p class="text-dark">5 colors, 8 directions, offering you a desirable atmosphere</p>
-                <div class="intro-block-lights">
-                    <span class="text-dark inline-block">Candlelight</span>
-                    <span class="text-dark inline-block">Golden Milk</span>
-                    <span class="text-dark inline-block">Ivory White</span>
-                    <span class="text-dark inline-block">Light Amber</span>
-                    <span class="text-dark inline-block">Pearl White</span>
-                </div>
             </div>
             <img src="{{ CDN_SERVER . '/images/introduce/domilamp/light.png' }}" width="100%" alt="">
         </div>
@@ -50,9 +43,11 @@
             <div class="intro-block text-white">
                 <div class="text-left inline-block domilamp-overview-cap">
                     <p class="domilamp-overview-cap-title"><strong>Glass-like shade</strong></p>
-                    <p class="mt-10">Polycarbonate（PC）Shade w/ Light Diffuser</p>
-                    <p>Solid Wood Cap</p>
-                    <p>Ventilation Sink</p>
+                    <ul class="mt-10">
+                        <li>Polycarbonate（PC）Shade w/ Light Diffuser</li>
+                        <li>Solid Wood Cap</li>
+                        <li>Ventilation Sink</li>
+                    </ul>
                 </div>
             </div>
             <img src="{{ CDN_SERVER . '/images/introduce/domilamp/shade.png' }}" width="100%" alt="">
@@ -60,9 +55,11 @@
         <div>
             <div class="intro-block text-white">
                 <div class="inline-block text-black domilamp-overview-rotation">
-                    <p class="domilamp-overview-rotation-title"><strong>Rotation</strong></p>
-                    <p class="mt-10">Bi-directional 24-step Manipulation</p>
-                    <p>Operating like an old-fashion dimmer</p>
+                    <p class="domilamp-overview-rotation-title"><strong>360° Rotation</strong></p>
+                    <ul class="mt-10">
+                        <li>Bi-directional 24-step Manipulation</li>
+                        <li>Operating like an old-fashion dimmer</li>
+                    </ul>
                 </div>
             </div>
             <img src="{{ CDN_SERVER . '/images/introduce/domilamp/Rotation.png' }}" width="100%" alt="">
@@ -70,7 +67,7 @@
         <div>
             <div class="intro-block text-white">
                 <div class="inline-block domilamp-overview-vibration">
-                    <p class="domilamp-overview-vibration-title">Comfortable vibration feedback</p>
+                    <p class="domilamp-overview-vibration-title">Comfortable Vibration Feedback</p>
                     <p class="mt-10">The internal vibration motor will get the fingers notified when each light is adjusted to the maximum level.</p>
                 </div>
             </div>
@@ -83,9 +80,11 @@
             <div class="intro-block text-white">
                 <div class="inline-block text-black domilamp-domi">
                     <p class="domilamp-domi-title"><strong>"Domi" Experience</strong></p>
-                    <p class="mt-10">Toggle Button for "Domi" Availablity</p>
-                    <p>Light Synchronization between Lamps</p>
-                    <p>Automatic Brightness Alignment</p>
+                    <ul class="mt-10">
+                        <li>Toggle Button for "Domi" Availablity</li>
+                        <li>Light Synchronization between Lamps</li>
+                        <li>Automatic Brightness Alignment</li>
+                    </ul>
                 </div>
             </div>
             <img src="{{ CDN_SERVER . '/images/introduce/domilamp/Dom.png' }}" width="100%" alt="">
