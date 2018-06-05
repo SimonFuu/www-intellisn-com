@@ -124,6 +124,10 @@ section {
     background-color: #f5f5f5;
     line-height: 59px;
 }
+
+.second-header-title {
+    font-size: 24px;
+}
 /**
     Common footer css
  */

@@ -1,6 +1,6 @@
 <div id="header" class="sub-nav-header navbar-toggleable-md sticky clearfix">
     <div class="container">
-        <div class="float-left">
+        <div class="float-left second-header-title">
             <strong>{{ SECOND_HEADER }}</strong>
         </div>
         @if(isset($productId))

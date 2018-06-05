@@ -36,7 +36,7 @@
 
     </div>
     <footer id="footer">
-        @include('layouts.' . SITE . '.footer')
+        @include('layouts.footer')
     </footer>
 </div>
 

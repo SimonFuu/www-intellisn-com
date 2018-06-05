@@ -6,7 +6,7 @@
                 Intellisn, a group of dreamers creating excellent products for people's daily life. We are a team of engineers but also enthusiastic designers who focus on details with unique understanding of user experience.
             </p>
             <p>
-                Any questions, please contact us by emailing to <a href="mailto:service@intellisn.com">service@intellisn.com</a>. We will answer all your questions and do our best to help you.
+                Any questions, please contact us by emailing to <a href="mailto:contact@intellisn.com">contact@intellisn.com</a>. We will answer all your questions and do our best to help you.
             </p>
 
             <p>

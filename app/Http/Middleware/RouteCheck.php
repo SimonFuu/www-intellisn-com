@@ -19,30 +19,36 @@ class RouteCheck
             $routeName = $request -> route() -> getName();
             $site = $request -> route() -> getDomain();
             if ($site == config('domains.china')) {
-                define('SECOND_HEADER', 'TEST Header');
+                $this -> setChinaHeader($routeName);
             } elseif ($site == config('domains.backend')) {
                 define('SECOND_HEADER', 'TEST Header');
             } else {
-                $this -> set($routeName);
+                $this -> setGlobalHeader($routeName);
 
             }
         }
         return $next($request);
     }
 
-    private function set($routeName = '')
+    private function setChinaHeader($routeName = '')
     {
-//        Route::get('/', 'IndexController@showIndex') -> name('global');
-//        Route::get('/cart', 'CartController@showShoppingCart') -> name('global');
-//        Route::get('/cart/add', 'CartController@storeAddingItemsToCart') -> name('globalAddingToShoppingCart');
-//        Route::get('/support/product/{id}', 'SupportController@showSupport') -> name('global');
-//        Route::get('/contact', 'ContactController@showIndex') -> name('globalContact');
-//        Route::get('/order/checkout/{id}', 'OrderController@showCheckoutForm') -> name('globalCheckoutForm');
-//        Route::get('/order/recheckout/{id}', 'OrderController@showReCheckoutForm') -> name('globalReCheckoutForm');
-//        Route::get('/order/inquiry', 'OrderController@showInquiryForm') -> name('globalOrderInquiryForm');
-//        Route::get('/pay/result', 'PaymentController@checkoutSuccess') -> name('globalCheckoutResult');
-//        Route::get('/product/{id}', 'ProductController@showIndex') -> name('globalProduct');
+//        Route::get('/', 'IndexController@showIndex') -> name('chinaIndex');
+//        Route::get('/product/{id}', 'ProductController@showIndex') -> name('chinaProduct');
 
+        switch ($routeName) {
+            case SITE . 'Index':
+                define('SECOND_HEADER', 'Domilamp');
+                break;
+            case SITE . 'DomiLampHelp':
+                define('SECOND_HEADER', 'DomiLamp - 帮助 – 私有组群');
+                break;
+            default:
+                define('SECOND_HEADER', 'Domilamp');  // 定义首页第二级 header
+        }
+    }
+
+    private function setGlobalHeader($routeName = '')
+    {
         switch ($routeName) {
             case SITE . 'Index':
                 define('SECOND_HEADER', 'Domilamp');
