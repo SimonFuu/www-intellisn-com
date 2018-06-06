@@ -2,6 +2,9 @@
 @section('main')
     <section>
         <div class="container">
+            <h2>
+                私有组群
+            </h2>
             <p>出厂初始状态下，任何一盏DomiLamp无需任何配置即可与周围（有效通信距离内）的一盏或多盏DomiLamp实现联动。</p>
             <p>如果您有多盏DomiLamp，并且有意让不同房间或区域的灯组独立工作，则必须配置私有组群，以确保任何一组和其他DomiLamp不产生联动。注意：如果您在每个房间或区域仅有一盏DomiLamp，则只需通过释放各自的Domi按键来解除联动功能。Domi按键说明参见Domi功能说明（此处跳转到之前manual里对Domi功能的说明那一章节）</p>
 
@@ -54,7 +57,4 @@
             <p>脱离私有组群的DomiLamp将恢复到出厂初始状态，可以与任何不在私有群组内的一盏或多盏DomiLamp联动。</p>
         </div>
     </section>
-
-
-
 @endsection

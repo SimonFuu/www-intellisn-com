@@ -92,8 +92,8 @@ class CartController extends GlobalController
                         $currentCartItems[$sku]['count'] += 1;
                     } else {
                         $price = DB::table('products_sku')
-                            -> select('price', 'name', 'cur_symbol')
-                            -> where('is_delete', 0) -> where('sku', $sku) -> where('p_id', $product['product'])
+                            -> select('price', 'name', 'cur_symbol', 'thumb')
+                            -> where('is_delete', 0) -> where('mark', $sku) -> where('p_id', $product['product'])
                             -> first();
                         $p = DB::table('products')
                             -> select('name', 'thumb')
@@ -101,8 +101,8 @@ class CartController extends GlobalController
                             -> first();
                         if ($price && $p) {
                             $currentCartItems[$sku] = [
-                                'price' =>  $price -> price,
-                                'thumb' => CDN_SERVER . $p -> thumb,
+                                'price' => $price -> price,
+                                'thumb' => $price -> thumb,
                                 'product' => $p -> name,
                                 'product_id' => $product['product'],
                                 'sku_name' => $price -> name,
@@ -127,10 +127,11 @@ class CartController extends GlobalController
                     ]);
                 }
                 Cookie::queue('cart', json_encode($currentCartItems), 1440);
-                return view('global.payment.addToCart', [
-                    'result' => true, 'message' => '添加产品成功！',
-                    'cartItemsCount' => count($currentCartItems),
-                ]);
+                return redirect(route(SITE . 'ShoppingCart'));
+//                return view('global.payment.addToCart', [
+//                    'result' => true, 'message' => '添加产品成功！',
+//                    'cartItemsCount' => count($currentCartItems),
+//                ]);
             }
         } else {
             // 不存在 Product 参数

@@ -38,7 +38,8 @@ class GlobalController extends Controller
     {
         $sum = 0;
         foreach ($items as $key => $item) {
-            $sum += $this -> getItemCheckoutAmount($key, $item -> count);
+            $sum += $item -> price * $item -> count;
+//            $sum += $this -> getItemCheckoutAmount($key, $item -> count);
         }
         return $sum;
     }

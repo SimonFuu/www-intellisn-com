@@ -50,8 +50,11 @@
                                     首页
                                 </a>
                             </li>
-                            {{--TEST Header
---}}
+                            <li class="">
+                                <a href="{{ route(SITE. 'ProductSupport', ['id' => '6402415426629795841']) }}">
+                                    支持
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                 </div>

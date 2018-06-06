@@ -90,7 +90,9 @@ function productOptionsSelection() {
                 data: {'is_ajax': true, 'p_id': $('.product-id').data('product-id'), 'options': opts},
                 success: function (data) {
                     if (data.status) {
-                        $('.product-original-price').addClass('line-through');
+                        $('.product-id').removeClass('hide');
+                        $('.product-sku-id').html(data.data.sku);
+                        // $('.product-original-price').addClass('line-through');
                         $('.product-price').html(data.data.currency + ': ' + data.data.cur_symbol + parseFormatNum(data.data.price / 100, 2));
                     } else {
                         alert('Getting product price error.')

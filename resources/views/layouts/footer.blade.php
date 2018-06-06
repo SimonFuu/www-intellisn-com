@@ -87,6 +87,7 @@
                 <h4 class="letter-spacing-1"></h4>
                 <ul class="list-unstyled">
                     <li><a href="{{ route(SITE . 'Index') }}">首页</a></li>
+                    <li><a href="{{ route(SITE. 'ProductSupport', ['id' => '6402415426629795841']) }}">支持</a></li>
                 </ul>
                 <!-- /Links -->
             </div>

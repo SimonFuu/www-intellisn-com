@@ -12,10 +12,10 @@
                         <table class="table nomargin cart-content">
                             <thead>
                             <tr>
-                                <td width="40%">PRODUCT NAME</td>
+                                <td width="45%">PRODUCT NAME</td>
                                 <td width="25%">QUANTITY</td>
                                 <td width="20%">TOTAL</td>
-                                <td class="text-center" width="15%">ACTION</td>
+                                <td class="text-center" width="10%">ACTION</td>
                             </tr>
                             </thead>
                             <tbody class="">
@@ -24,12 +24,14 @@
                                         <td>
                                             <div class="cart_img float-left fw-100 p-10 text-left">
                                                 <img src="{{ CDN_SERVER . $item -> thumb}}" alt="" width="80" />
+                                                <div class="inline-block cart-product-name">
+                                                    <a href="{{ route(SITE . 'Product', ['id' => $item -> product_id]) }}" class="product_name">
+                                                        <span>{{ $item -> product }}</span>
+                                                        <br>
+                                                        <small>{{ $item -> sku_name }}</small>
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <a href="{{ route(SITE . 'Product', ['id' => $item -> product_id]) }}" class="product_name">
-                                                <span>{{ $item -> product }}</span>
-                                                <br>
-                                                <small>{{ $item -> sku_name }}</small>
-                                            </a>
                                         </td>
                                         <td>
                                             <div class="qty form-inline">
@@ -74,7 +76,7 @@
                                     <strong class="float-left">Subtotal:</strong>
                                 </span>
                                     <span class="clearfix">
-                                    <span class="float-right discount line-through">-{{ $price['cur_symbol'] }}<span>{{ number_format($price['discount'] / 100, 2) }}</span></span>
+                                    <span class="float-right discount">-{{ $price['cur_symbol'] }}<span>{{ number_format($price['discount'] / 100, 2) }}</span></span>
                                     <span class="float-left">Discount:</span>
                                 </span>
                                     <span class="clearfix">

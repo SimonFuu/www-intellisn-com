@@ -32,15 +32,18 @@
                     <!-- price -->
                     <div class="shop-item-price">
                         <span class="product-original-price pl-0">
-                            {{ $product -> price -> currency . ': ' . $product -> price -> cur_symbol . number_format($product -> price -> price / 100, 2) }}
+                            <span class="product-price fw-800">
+                                {{ $product -> price -> currency . ': ' . $product -> price -> cur_symbol . number_format($product -> price -> price / 100, 2) }}
+                            </span>
+{{--                            {{ $product -> price -> currency . ': ' . $product -> price -> cur_symbol . number_format($product -> price -> price / 100, 2) }}--}}
                         </span>
                         <br>
-                        <span class="product-price"></span>
+                        {{--<span class="product-price"></span>--}}
                     </div>
                     <hr />
                     <!-- /price -->
-                    <div class="product-id clearfix mb-30" data-product-id="{{ $product-> id }}">
-                        <strong>ITLS ID: </strong> {{ $product -> id }}
+                    <div class="product-id clearfix mb-30 hide" data-product-id="{{ $product-> id }}">
+                        <strong>SKU: </strong> <span class="product-sku-id"></span>
                     </div>
                     <!-- short description -->
                     <p>{{ $product ->abstract }}</p>
@@ -52,15 +55,28 @@
                             @php($i = 1)
                             @foreach($product -> options as $group => $options)
                                 <div class="product-option-group product-option-{{ $i }}">
-
-                                    <span>
-                                        {{ $group }}
-                                    </span>
-                                    @foreach($options as $option)
-                                        <div class="product-option inline-block" data-opt-id="{{ $option -> id }}" data-thumb="{{ $option -> thumb }}" data-value="{{ $option -> name }}" data-query-url="{{ route(SITE. 'QuerySKUPrice') }}">
-                                            {{ $option -> name }}
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <span>{{ $group }}</span>
                                         </div>
-                                    @endforeach
+                                        <div class="col-md-10">
+                                            @php($optionsCount = count($options))
+                                            @foreach($options as $option)
+                                                <div class="product-option inline-block text-center {{ $optionsCount === 1 ? 'selected' : '' }}" data-opt-id="{{ $option -> id }}" data-thumb="{{ $option -> thumb }}" data-value="{{ $option -> name }}" data-query-url="{{ route(SITE. 'QuerySKUPrice') }}">
+                                                    @if($option -> thumb)
+                                                        <img src="{{ CDN_SERVER . $option -> thumb }}" alt="" width="30px">
+                                                    @endif
+                                                    <span>{{ $option -> name }}</span>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+
+                                    <div>
+
+                                    </div>
+
+
                                     @php($i++)
                                     {{--<div class="product-option inline-block">--}}
                                         {{--花梨--}}
@@ -115,7 +131,7 @@
 
             <ul id="myTab" class="nav nav-tabs nav-top-border mt-80" role="tablist">
                 <li class="nav-item"><a class="nav-link active" href="#description" data-toggle="tab">Description</a></li>
-                @if($product -> spu)
+                @if(!$product -> spu)
                     <li class="nav-item"><a class="nav-link" href="#specs" data-toggle="tab">Specifications</a></li>
                 @endif
             </ul>
@@ -125,10 +141,10 @@
 
                 <!-- DESCRIPTION -->
                 <div role="tabpanel" class="tab-pane active" id="description">
-                    {{ $product -> descritpion  }}
+                    {!! $product -> descritpion !!}
                 </div>
 
-                @if($product -> spu)
+                @if(!$product -> spu)
                     <!-- SPECIFICATIONS -->
                     <div role="tabpanel" class="tab-pane fade" id="specs">
                         <div class="table-responsive">

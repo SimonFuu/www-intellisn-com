@@ -77,8 +77,8 @@ class ProductController extends GlobalController
                 $options = $request -> options;
                 asort($options);
                 $sku = md5(implode('+', $options));
-                $price = DB::table('products_sku') -> select('price', 'currency', 'cur_symbol')
-                    -> where('is_delete', 0) -> where('sku', $sku)
+                $price = DB::table('products_sku') -> select('price', 'currency', 'cur_symbol', 'sku')
+                    -> where('is_delete', 0) -> where('mark', $sku)
                     -> where('p_id', $request -> p_id) -> first();
                 if ($price) {
                     $response = $this -> ajaxResponse(true, true, 'success.', $price);

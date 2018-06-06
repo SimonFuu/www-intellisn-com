@@ -39,8 +39,8 @@ class RouteCheck
             case SITE . 'Index':
                 define('SECOND_HEADER', 'Domilamp');
                 break;
-            case SITE . 'DomiLampHelp':
-                define('SECOND_HEADER', 'DomiLamp - 帮助 – 私有组群');
+            case SITE . 'ProductSupport':
+                define('SECOND_HEADER', ' 支持');
                 break;
             default:
                 define('SECOND_HEADER', 'Domilamp');  // 定义首页第二级 header

@@ -40,7 +40,6 @@ Route::domain(config('domains.china'))
             Route::get('/', 'IndexController@showIndex') -> name('chinaIndex');
             Route::get('/product/{id}', 'ProductController@showIndex') -> name('chinaProduct');
             Route::get('/support/product/{id}', 'SupportController@showSupport') -> name('chinaProductSupport');
-            Route::get('/domilamp/help', 'SupportController@showSupport') -> name('chinaDomiLampHelp');
             Route::post('/subscription/store', 'IndexController@storeSubscription') -> name('chinaStoreSubscription');
         });
     });
