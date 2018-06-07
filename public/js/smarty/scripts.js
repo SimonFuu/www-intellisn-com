@@ -319,7 +319,6 @@
 
 		/* Scroll To Top */
 		function _toTop() {
-			alert(1);
 			_scrollTop = jQuery(document).scrollTop();
 			
 			if(_scrollTop > 100) {

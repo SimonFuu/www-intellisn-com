@@ -71,7 +71,7 @@ class Controller extends BaseController
 
             if ($result) {
                 // TODO 订阅成功提示
-                return ['result' => true, 'status' => true, 'message' => 'Thank you!We\'ve added you to the mailing lists you selected.', 'data' => []];
+                return ['result' => true, 'status' => true, 'message' => 'Thank you! We\'ve added you to the mailing lists you selected.', 'data' => []];
             } else {
                 return ['result' => true, 'status' => false, 'message' => $this -> response['commonError'], 'data' => []];
             }

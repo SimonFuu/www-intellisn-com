@@ -64,7 +64,7 @@ class OrderController extends GlobalController
                     $orderDetail[] = [
                         'id' => $ids[$key + 1],
                         'o_id' => $orderId,
-                        'sku' => $product -> mark,
+                        'mark' => $product -> mark,
                         'quantity' => $itemsCount[$product -> mark]
                     ];
 

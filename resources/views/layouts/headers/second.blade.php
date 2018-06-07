@@ -14,7 +14,7 @@
                         </li>
                         <li class="sub-nav-header-item"><!-- FEATURES -->
                             <a href="#domi">
-                                'Domi' Experience
+                                "Domi" Experience
                             </a>
                         </li>
                         <li class="sub-nav-header-item"><!-- PRICING -->
@@ -34,7 +34,7 @@
                         </li>
                         <li>
                             <span>
-                                <a href="{{ route(SITE . 'Product', ['id' => '6402415426629795841']) }}" class="btn btn-sm btn-primary">
+                                <a href="{{ route(SITE . 'Product', ['id' => '6402415426629795841']) }}" class="purchase-btn btn btn-sm btn-primary">
                                     <strong>Buy</strong>
                                 </a>
                             </span>

@@ -6,7 +6,7 @@
                 <p class="domilamp-overview-title">DomiLamp</p>
                 <p class="domilamp-overview-second-title">
                     An artistic wooden lamp with simple look and feel <br />
-                    A smart lamp with unique ability to interact with peers without any configurations
+                    A smart lamp with unique ability to interact with peers without any configurations <br />
                     An interesting lamp, acting as dominoes
                 </p>
             </div>

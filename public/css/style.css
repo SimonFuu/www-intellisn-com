@@ -48,7 +48,6 @@ section {
 
 #topMain.site-nav-header-items.nav-pills>li>a {
     color: #fff;
-
 }
 
 #topMain.site-nav-header-items.nav-pills>li>a:hover, li.active a, .shopping-bag-icon .quick-cart a:hover  {
@@ -79,9 +78,10 @@ section {
     font-size: 22px;
 }
 
-.sub-nav-header-items .sub-nav-header-item {
-    font-size: 12px;
+.sub-nav-header-items .sub-nav-header-item, .purchase-btn {
+    font-size: 1em !important;
 }
+
 
 @media screen and (max-width: 992px) {
     #topNav button.btn-mobile-active {
@@ -127,6 +127,7 @@ section {
 
 .second-header-title {
     font-size: 24px;
+    color: #000;
 }
 /**
     Common footer css
@@ -203,8 +204,7 @@ section {
 
 .domilamp-overview-title {
     font-size: 7vw;
-    /*margin-top: 15vw !important;*/
-    margin-top: 17vw !important;
+    margin-top: 11vw !important;
     color: #ffffff
 }
 
