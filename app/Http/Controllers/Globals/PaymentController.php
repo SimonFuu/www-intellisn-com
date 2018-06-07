@@ -83,8 +83,8 @@ class PaymentController extends GlobalController
             'paymentCCExpYear.required' => '请选择信用卡有效期',
             'paymentCCExpYear.in' => '信用卡有效期状态异常',
             'paymentCCCVV.required' => '请输入信用卡CVV2',
-            'paymentCCCVV.min' => '信用卡CVV长度不能大于:max',
-            'paymentCCCVV.max' => '信用卡CVV长度不能小于:min',
+            'paymentCCCVV.min' => '信用卡CVV长度不能小于:min',
+            'paymentCCCVV.max' => '信用卡CVV长度不能大于:max',
         ];
         $this -> validate($request, $rules, $messages);
 
@@ -184,6 +184,7 @@ class PaymentController extends GlobalController
                 'id' => $order -> id,
                 'recipient' => $request -> name,
                 'site' => SITE,
+                'amount' => $paymentInfo['currency'] . $paymentInfo['amount'],
                 'email' => $request -> email
             ];
             $this -> sentMail($mail, 1);
@@ -362,9 +363,10 @@ class PaymentController extends GlobalController
             // 跳转到 success 结果
             $mail = (object) [
                 'id' => $order -> id,
-                'recipient' => $order -> name,
+                'recipient' => $request -> name,
                 'site' => SITE,
-                'email' => $order -> email
+                'amount' => $paymentInfo['currency'] . $paymentInfo['amount'],
+                'email' => $request -> email
             ];
             $this -> sentMail($mail, 1);
             return redirect(route(SITE . 'CheckoutResult')) -> with('success', $order -> name);

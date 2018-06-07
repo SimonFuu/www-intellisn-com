@@ -11,7 +11,6 @@
 
                     <p>
                         Your order has been placed. In a few moments you will receive an order confirmation email from us.<br />
-                        If you like, you can explore more <a href="{{ route(SITE . 'Index') }}">Intellisn products</a>.
                     </p>
 
                     <hr />

@@ -75,7 +75,7 @@ class CartController extends GlobalController
                 // Base 64 解码失败
                 return view('global.payment.addToCart', [
                     'result' => false,
-                    'message' => 'Invalid request params, code 1',
+                    'message' => 'Failed to add the product to the shopping cart, code 1',
                     'cartItemsCount' => -1
                 ]);
             } else {
@@ -113,7 +113,7 @@ class CartController extends GlobalController
                             // 产品未发现
                             return view('global.payment.addToCart', [
                                 'result' => false,
-                                'message' => 'Invalid request params, code 3',
+                                'message' => 'Failed to add the product to the shopping cart, code 3',
                                 'cartItemsCount' => -1
                             ]);
                         }
@@ -122,7 +122,7 @@ class CartController extends GlobalController
                     // 关键参数不存在
                     return view('global.payment.addToCart', [
                         'result' => false,
-                        'message' => 'Invalid request params, code 2',
+                        'message' => 'Failed to add the product to the shopping cart, code 2',
                         'cartItemsCount' => -1
                     ]);
                 }
@@ -137,7 +137,7 @@ class CartController extends GlobalController
             // 不存在 Product 参数
             return view('global.payment.addToCart', [
                 'result' => false,
-                'message' => 'Invalid request params, code 0.',
+                'message' => 'Failed to add the product to the shopping cart, code 0.',
                 'cartItemsCount' => -1,
             ]);
         }

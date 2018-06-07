@@ -113,7 +113,7 @@ function productOption() {
     $('.add-to-cart-btn').on('click', function (e) {
         let option = $('.product-option.selected');
         if (option.length !== $('.product-option-group').length) {
-            alert('select the option first!');
+            alert('Please select the option first!');
         } else {
             let opts = [];
             option.each(function (index, element) {
@@ -141,10 +141,8 @@ function headerCartCountDisplay() {
 function calculateCartPrice() {
     $('.item-count').on('change', function () {
         if ($(this).val() > 99) {
-            alert('请输入1-99之间的数字！');
             $(this).val(99);
         } else if ($(this).val() < 1) {
-            alert('请输入1-99之间的数字！');
             $(this).val(1);
         }
 

@@ -17,6 +17,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    protected $response = [
+        'commonError' => 'There is something wrong, please try again later.',
+        'invalidRequest' => 'Invalid request, please try again.'
+    ];
+
     protected $deliveryCountries = [
         "CN" => "China",
         "DE" => "Germany",
@@ -66,12 +71,12 @@ class Controller extends BaseController
 
             if ($result) {
                 // TODO 订阅成功提示
-                return ['result' => true, 'status' => true, 'message' => '订阅成功', 'data' => []];
+                return ['result' => true, 'status' => true, 'message' => 'Thank you!We\'ve added you to the mailing lists you selected.', 'data' => []];
             } else {
-                return ['result' => true, 'status' => false, 'message' => '订阅失败', 'data' => []];
+                return ['result' => true, 'status' => false, 'message' => $this -> response['commonError'], 'data' => []];
             }
         } else {
-            return ['result' => false, 'status' => false, 'message' => 'Invalid request.', 'data' => []];
+            return ['result' => false, 'status' => false, 'message' => $this -> response['invalidRequest'], 'data' => []];
         }
     }
 
@@ -97,7 +102,7 @@ class Controller extends BaseController
     {
         // 获取订单列表
         $detail = DB::connection('mysql_backend') -> table('orders_detail')
-            -> select('quantity', 'sku')
+            -> select('quantity', 'mark')
             -> where('is_delete', 0)
             -> where('o_id', $order -> id)
             -> get();
@@ -105,21 +110,21 @@ class Controller extends BaseController
             $sku = [];
             $orderDetail = [];
             foreach ($detail as $item) {
-                $sku[] = $item -> sku;
-                $orderDetail[$item -> sku] = (object) ['quantity' => $item -> quantity];
+                $sku[] = $item -> mark;
+                $orderDetail[$item -> mark] = (object) ['quantity' => $item -> quantity];
             }
             $products = DB::connection('mysql_' . $order -> source)
                 -> table('products_sku')
-                -> select('products.name', 'products_sku.name as sku_name', 'products_sku.sku', 'products_sku.thumb')
+                -> select('products.name', 'products_sku.name as sku_name', 'products_sku.mark', 'products_sku.thumb')
                 -> leftJoin('products', 'products.id', '=', 'products_sku.p_id')
-                -> whereIn('products_sku.sku', $sku)
+                -> whereIn('products_sku.mark', $sku)
                 -> get();
 
             if ($products -> isNotEmpty()) {
                 foreach ($products as $product) {
-                    $orderDetail[$product -> sku] -> product = $product -> name;
-                    $orderDetail[$product -> sku] -> sku = $product -> sku_name;
-                    $orderDetail[$product -> sku] -> thumb = $product -> thumb;
+                    $orderDetail[$product -> mark] -> product = $product -> name;
+                    $orderDetail[$product -> mark] -> sku = $product -> sku_name;
+                    $orderDetail[$product -> mark] -> thumb = $product -> thumb;
                 }
             } else {
                 // TODO 订单异常 商品没有 SKU 信息

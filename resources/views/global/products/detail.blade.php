@@ -61,8 +61,8 @@
                                         </div>
                                         <div class="col-md-10">
                                             @php($optionsCount = count($options))
-                                            @foreach($options as $option)
-                                                <div class="product-option inline-block text-center {{ $optionsCount === 1 ? 'selected' : '' }}" data-opt-id="{{ $option -> id }}" data-thumb="{{ $option -> thumb }}" data-value="{{ $option -> name }}" data-query-url="{{ route(SITE. 'QuerySKUPrice') }}">
+                                            @foreach($options as $key => $option)
+                                                <div class="product-option inline-block text-center {{ ($optionsCount === 1 || $key === 0) ? 'selected' : '' }}" data-opt-id="{{ $option -> id }}" data-thumb="{{ $option -> thumb }}" data-value="{{ $option -> name }}" data-query-url="{{ route(SITE. 'QuerySKUPrice') }}">
                                                     @if($option -> thumb)
                                                         <img src="{{ CDN_SERVER . $option -> thumb }}" alt="" width="30px">
                                                     @endif

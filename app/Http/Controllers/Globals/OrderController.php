@@ -46,8 +46,8 @@ class OrderController extends GlobalController
 
             // 获取价格
             $products = DB::table('products_sku')
-                -> select('p_id', 'sku', 'price', 'currency', 'cur_symbol')
-                -> where('is_delete', 0) -> whereIn('sku', $sku) -> get();
+                -> select('p_id', 'sku', 'mark', 'price', 'currency', 'cur_symbol')
+                -> where('is_delete', 0) -> whereIn('mark', $sku) -> get();
 
 
             if ($products -> isNotEmpty() && count($products) === $count) {
@@ -64,16 +64,16 @@ class OrderController extends GlobalController
                     $orderDetail[] = [
                         'id' => $ids[$key + 1],
                         'o_id' => $orderId,
-                        'sku' => $product -> sku,
-                        'quantity' => $itemsCount[$product -> sku]
+                        'sku' => $product -> mark,
+                        'quantity' => $itemsCount[$product -> mark]
                     ];
 
-                    $items[$product -> sku] = [
-                        'count' => $itemsCount[$product -> sku],
+                    $items[$product -> mark] = [
+                        'count' => $itemsCount[$product -> mark],
                         'price' => $product -> price,
                     ];
 
-                    $orderItemsCount += $itemsCount[$product -> sku];
+                    $orderItemsCount += $itemsCount[$product -> mark];
                     $currency = $product -> currency;
                     $curSymbol = $product -> cur_symbol;
                 }
@@ -236,7 +236,10 @@ class OrderController extends GlobalController
                 -> where('orders.is_delete', 0)
                 -> first();
             if (is_null($order)) {
-                return view('global.orders.inquiry', ['result' => false, 'message' => '订单信息不存在，请重试！']);
+                return view('global.orders.inquiry', [
+                    'result' => false,
+                    'message' => 'Sorry, we can\'t find your order details, please verify the order number and email address you provided.'
+                ]);
 
             } else {
                 $order -> express = DB::connection('mysql_backend')
@@ -252,7 +255,9 @@ class OrderController extends GlobalController
                     $order -> detail = $detail;
                     return view('global.orders.detail', ['order' => $order, 'result' => true]);
                 } else {
-                    return view('global.orders.inquiry', ['result' => false, 'message' => '订单信息异常，请发送邮件到service@intellisn.com，提供您的订单编号以便查询。']);
+                    return view('global.orders.inquiry', [
+                        'result' => false, 'message' => 'There is something wrong, please send an email with your ITLS ORDER ID to service@intellisn.com。'
+                    ]);
 
                 }
             }
