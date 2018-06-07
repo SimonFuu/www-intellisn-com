@@ -12,8 +12,10 @@ class OrderPlacedMail extends Mailable
     use Queueable, SerializesModels;
 
     public $order;
+
+    public $subject = (SITE === 'china' ? '支付成功' : 'Payment Received');
     /**
-     *
+     * @param $order array
      *
      * @return void
      */
