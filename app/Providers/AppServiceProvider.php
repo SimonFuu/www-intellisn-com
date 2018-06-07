@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Request $request)
     {
+        \URL::forceScheme(config('app.schema'));
         if ($request -> header('host') == config('domains.china')) {
             define('SITE', 'china');
             $this -> defineCDNServers('china');

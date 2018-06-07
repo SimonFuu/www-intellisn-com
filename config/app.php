@@ -132,6 +132,8 @@ return [
             2 => 'Shipped',
         ]
     ],
+
+    'schema' => env('APP_ENV') === 'local' ? 'http' : env('APP_SCHEMA'),
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
