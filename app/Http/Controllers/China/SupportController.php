@@ -15,7 +15,6 @@ class SupportController extends ChinaController
 {
     public function showSupport($product = '')
     {
-        return view('china.domilamp.help');
-
+        return view('china.support.support');
     }
 }

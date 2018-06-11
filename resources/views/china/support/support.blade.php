@@ -17,39 +17,44 @@
                         <div class="col-md-4">
                             <div class="domilamp-manual-content">
                                 <div>
-                                    <h4>“Domi” Switch:</h4>
-                                    Toggled - “Domi” mode (Receives and sends synchronization signals); <br>
-                                    Released - standalone mode (The “Domi” functionality is off).
+                                    <h4>“Domi” 开关：</h4>
+                                    按下 - “Domi”模式（接收和发送同步信号）；<br>
+                                    弹起 - 独立模式（“Domi”功能关闭）
                                 </div>
                                 <div>
-                                    <h4>State Indicator:</h4>
-                                    Flashes Quickly - in synchronization; Flashes Slowly - low battery;  <br>
-                                    Breathes - being recharged.
+                                    <h4>状态指示灯：</h4>
+                                    快速闪烁 - 同步中；<br>
+                                    缓慢闪烁 - 电量低；<br>
+                                    呼吸 - 充电中；<br>
                                 </div>
                                 <div>
-                                    <h4>Storage Switch:</h4>
-                                    Up - Cuts off the power supply from batteries (for long-distance shipment, long-term storage purposes); Does not apply when the power adapter is connected;<br>
-                                    Down - Enables the power supply from batteries; <br>
-                                    The lamp is always rechargeable regardless of the up/down status.
+                                    <h4>储存开关：</h4>
+                                    “Storage” - 切断电池供电 (用于长途运输、长期储存)，连接电源适配器时不适用；<br>
+                                    向下 -  使用电池供电；<br>
+                                    无论“Storage”或向下，不影响DomiLamp电池充电；
                                 </div>
                                 <div>
-                                    <h4>Power/Extension Dock:</h4>
-                                    Provides a USB port to be connected to a power adapter;<br>
-                                    Reuses the USB port to work as a USB device which can be connected and configured with a PC.
+                                    <h4>电源/扩展坞：</h4>
+                                    提供连接到电源适配器的 USB 端口；<br>
+                                    将DomiLamp作为USB设备连接至 PC并进行配置；
                                 </div>
                                 <div>
-                                    <h4>Reset Holes:</h4>
-                                    Reserved for further firmware updates.
+                                    <h4>组群键：</h4>
+                                    见“<a class="scrollTo" href="#help-groups">私有组群</a>”详细说明
                                 </div>
                                 <div>
-                                    <h4>Mounting Holes:</h4>
-                                    Reserved for further accessories.
+                                    <h4>挂载孔：</h4>
+                                    为将来的配件预留；
+                                </div>
+                                <div>
+                                    <h4>橡胶垫：</h4>
+                                    支撑和防滑；
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="help-groups">
+                <div id="help-groups" class="pt-60">
                     <h2>
                         私有组群
                     </h2>

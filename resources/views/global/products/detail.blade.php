@@ -98,30 +98,42 @@
 
                 <!-- INFO -->
                 <div class="col-sm-4 col-md-3">
-
                     <h4 class="fs-18">
-                        <i class="fa fa-paper-plane-o"></i>
-                        FREE SHIPPING
+                        ITEMS INCLUDED
                     </h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla.</p>
+                    <ul>
+                        <li>DomiLamp</li>
+                        <li>Power Adapter</li>
+                        <li>USB Cable</li>
+                    </ul>
 
                     <h4 class="fs-18">
-                        <i class="fa fa-clock-o"></i>
-                        30 DAYS MONEY BACK
-                    </h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla.</p>
-
-                    <h4 class="fs-18">
-                        <i class="fa fa-users"></i>
                         CUSTOMER SUPPORT
                     </h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla.</p>
-
-                    <hr>
-
-                    <p class="fs-11">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque.
+                    <p>If you have any issues with your lamp and the shipping, please contact us at <a href="mailto:cotact@intellisn.com">cotact@intellisn.com</a>.
                     </p>
+                    <p>As we know, it’s hard to have a date for every package and a fast answer to every question. But we do keep an open line of communication, and try to respond as fast as we can.
+                    </p>
+                    <p>We are looking forward to seeing photos of your DomiLamps once you’ll receive them!
+                    </p>
+
+                    {{--<h4 class="fs-18">--}}
+                        {{--<i class="fa fa-clock-o"></i>--}}
+                        {{--30 DAYS MONEY BACK--}}
+                    {{--</h4>--}}
+                    {{--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla.</p>--}}
+
+                    {{--<h4 class="fs-18">--}}
+                        {{--<i class="fa fa-users"></i>--}}
+                        {{--CUSTOMER SUPPORT--}}
+                    {{--</h4>--}}
+                    {{--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla.</p>--}}
+
+                    {{--<hr>--}}
+
+                    {{--<p class="fs-11">--}}
+                        {{--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque.--}}
+                    {{--</p>--}}
                 </div>
                 <!-- /INFO -->
 

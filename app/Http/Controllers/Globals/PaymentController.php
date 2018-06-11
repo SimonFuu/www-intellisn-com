@@ -231,7 +231,7 @@ class PaymentController extends GlobalController
             'paymentCCCVV' => 'required|max:5|min:3',
         ];
         $messages = [
-            'id' => '订单信息异常，请重试',
+            'id' => 'There is something wrong',
             'name.required' => '请输入收件人姓名',
             'name.max' => '收件人姓名长度不要超过:max',
             'name.min' => '收件人姓名长度不要少于:min',

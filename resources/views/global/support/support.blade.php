@@ -23,7 +23,8 @@
                         </div>
                         <div>
                             <h4>State Indicator:</h4>
-                            Flashes Quickly - in synchronization; Flashes Slowly - low battery;  <br>
+                            Flashes Quickly - in synchronization;  <br>
+                            Flashes Slowly - low battery;  <br>
                             Breathes - being recharged.
                         </div>
                         <div>
