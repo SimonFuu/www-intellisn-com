@@ -127,7 +127,7 @@ class PaymentController extends GlobalController
                 'name' => $request -> name,
                 'phone' => $request -> phone,
                 'address1' => $request -> address1,
-                'address2' => $request -> address2,
+                'address2' => $request -> address2 ? : '',
                 'city' => $request -> city,
                 'state' => $request -> state,
                 'zip' => $request -> zip,
@@ -150,7 +150,7 @@ class PaymentController extends GlobalController
         }
 
         $paymentInfo = [
-            'amount' => number_format($order -> total / 100 ,2),
+            'amount' => $order -> total / 100,
             'currency' => 'USD',
             'description' => 'ITLS website order: ' . $order -> id,
             'card' => [
@@ -184,7 +184,7 @@ class PaymentController extends GlobalController
                 'id' => $order -> id,
                 'recipient' => $request -> name,
                 'site' => SITE,
-                'amount' => $paymentInfo['currency'] . $paymentInfo['amount'],
+                'amount' => $paymentInfo['currency']  . ': ' . $paymentInfo['amount'],
                 'email' => $request -> email
             ];
             $this -> sentMail($mail, 1);
@@ -309,7 +309,7 @@ class PaymentController extends GlobalController
                 'name' => $request -> name,
                 'phone' => $request -> phone,
                 'address1' => $request -> address1,
-                'address2' => $request -> address2,
+                'address2' => $request -> address2 ? : '',
                 'city' => $request -> city,
                 'state' => $request -> state,
                 'zip' => $request -> zip,
@@ -332,7 +332,7 @@ class PaymentController extends GlobalController
         }
 
         $paymentInfo = [
-            'amount' => number_format($order -> total / 100 ,2),
+            'amount' => $order -> total / 100,
             'currency' => 'USD',
             'description' => 'ITLS website order: ' . $order -> id,
             'card' => [
@@ -365,7 +365,7 @@ class PaymentController extends GlobalController
                 'id' => $order -> id,
                 'recipient' => $request -> name,
                 'site' => SITE,
-                'amount' => $paymentInfo['currency'] . $paymentInfo['amount'],
+                'amount' => $paymentInfo['currency']  . ': ' . $paymentInfo['amount'],
                 'email' => $request -> email
             ];
             $this -> sentMail($mail, 1);
