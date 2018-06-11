@@ -8,7 +8,7 @@
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active show" id="help">
                 <div id="help-manual" class="pt-60">
-                    <h2>说明</h2>
+                    <h2>产品概要</h2>
                     <div class="row">
                         <div class="col-md-8">
                             <img class="domilamp-manual-image" data-toggle="modal" data-target="#manual-img-modal" src="{{ CDN_SERVER }}/images/introduce/domilamp/domilamp-manual-zh.png" alt="" width="100%">
@@ -18,37 +18,37 @@
                             <div class="domilamp-manual-content">
                                 <div>
                                     <h4>“Domi” 开关：</h4>
-                                    按下 - “Domi”模式（接收和发送同步信号）；<br>
-                                    弹起 - 独立模式（“Domi”功能关闭）
+                                    按下 - “Domi” 模式（接收和发送同步信号）<br>
+                                    弹起 - 独立模式（“Domi” 功能关闭）
                                 </div>
-                                <div>
+                                <div class="mt-35">
                                     <h4>状态指示灯：</h4>
-                                    快速闪烁 - 同步中；<br>
-                                    缓慢闪烁 - 电量低；<br>
-                                    呼吸 - 充电中；<br>
+                                    快速闪烁 - 同步中<br>
+                                    缓慢闪烁 - 电量低<br>
+                                    呼吸 - 充电中<br>
                                 </div>
-                                <div>
+                                <div class="mt-35">
                                     <h4>储存开关：</h4>
-                                    “Storage” - 切断电池供电 (用于长途运输、长期储存)，连接电源适配器时不适用；<br>
-                                    向下 -  使用电池供电；<br>
-                                    无论“Storage”或向下，不影响DomiLamp电池充电；
+                                    “Storage” - 切断电池供电 (用于长途运输、长期储存)，连接电源适配器时不适<br>
+                                    向下 -  使用电池供电<br>
+                                    无论 “Storage” 或向下，不影响 DomiLamp 电池充电
                                 </div>
-                                <div>
+                                <div class="mt-35">
                                     <h4>电源/扩展坞：</h4>
-                                    提供连接到电源适配器的 USB 端口；<br>
-                                    将DomiLamp作为USB设备连接至 PC并进行配置；
+                                    提供连接到电源适配器的 USB 端口<br>
+                                    将 DomiLamp 作为 USB 设备连接至 PC 并进行配置
                                 </div>
-                                <div>
+                                <div class="mt-35">
                                     <h4>组群键：</h4>
-                                    见“<a class="scrollTo" href="#help-groups">私有组群</a>”详细说明
+                                    见 “<a class="scrollTo" href="#help-groups">私有组群</a>” 详细说明
                                 </div>
-                                <div>
+                                <div class="mt-35">
                                     <h4>挂载孔：</h4>
-                                    为将来的配件预留；
+                                    为将来的配件预留
                                 </div>
-                                <div>
+                                <div class="mt-35">
                                     <h4>橡胶垫：</h4>
-                                    支撑和防滑；
+                                    支撑和防滑
                                 </div>
                             </div>
                         </div>
