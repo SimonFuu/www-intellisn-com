@@ -15,6 +15,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Omnipay\Omnipay;
+use Stripe\Error\SignatureVerification;
+use Stripe\Stripe;
+use Stripe\Webhook;
 
 class PaymentController extends GlobalController
 {
@@ -463,5 +466,39 @@ class PaymentController extends GlobalController
     public function checkoutSuccess()
     {
         return view('global.payment.result');
+    }
+
+    public function webHook(Request $request)
+    {
+        $inputJsonObj = @file_get_contents("php://input");
+        Log::info(sprintf('【STRIPE_PAYMENT_WEBHOOK】Receive request from 【%s】, request body is "%s".',
+            $request -> getClientIp(), json_encode(json_decode($inputJsonObj))));
+        if ($request -> isJson()) {
+            if ($request -> hasHeader('stripe-signature')) {
+                $headerString = $request -> header('stripe-signature');
+                Stripe::setApiKey(config('app.strip.sk'));
+                try {
+                    Webhook::constructEvent($inputJsonObj, $headerString, config('app.strip.sk'));
+
+                    Log::info('【STRIPE_PAYMENT】web hook handle success:' . $inputJsonObj);
+                    return response('success', 200);
+                } catch (\UnexpectedValueException $e) {
+                    Log::warning('【STRIPE_PAYMENT_WEBHOOK_ERROR】Exceptions @ L1: ' . $e -> getMessage());
+                    return response($e -> getMessage(), 400);
+                } catch (SignatureVerification $e) {
+                    Log::warning('【STRIPE_PAYMENT_WEBHOOK_ERROR】Exceptions @ L2: ' . $e -> getMessage());
+                    return response($e -> getMessage(), 400);
+                } catch (\Exception $e) {
+                    Log::warning('【STRIPE_PAYMENT_WEBHOOK_ERROR】Exceptions @ L3: ' . $e -> getMessage());
+                    return response($e -> getMessage(), 400);
+                }
+            } else {
+                Log::warning('【STRIPE_PAYMENT_WEBHOOK_ERROR】Request header "stripe-signature" not found.');
+                return response('error', 400);
+            }
+        } else {
+            Log::warning('【STRIPE_PAYMENT_WEBHOOK_ERROR】request body is not json.');
+            return response('error, json request only', 400);
+        }
     }
 }

@@ -31,6 +31,8 @@ Route::domain(config('domains.global'))
             Route::get('/product/{id}', 'ProductController@showIndex') -> name('globalProduct');
             Route::post('/product/sku/price', 'ProductController@getSKUPrice') -> name('globalQuerySKUPrice');
             Route::post('/subscription/store', 'IndexController@storeSubscription') -> name('globalStoreSubscription');
+            Route::post('/payment/stripe/webhook', 'PaymentController@webhook');
+
         });
     });
 
