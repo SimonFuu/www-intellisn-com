@@ -15,6 +15,7 @@ class IndexController extends ChinaController
 {
     public function showIndex()
     {
-        return view('china.index');
+        return redirect(route('globalIndex'));
+//        return view('china.index');
     }
 }
