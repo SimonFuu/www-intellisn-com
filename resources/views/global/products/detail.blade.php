@@ -110,7 +110,7 @@
                     <h4 class="fs-18">
                         CUSTOMER SUPPORT
                     </h4>
-                    <p>If you have any issues with your lamp and the shipping, please contact us at <a href="mailto:cotact@intellisn.com">cotact@intellisn.com</a>.
+                    <p>If you have any issues with your lamp and the shipping, please contact us at <a href="mailto:contact@intellisn.com">contact@intellisn.com</a>.
                     </p>
                     <p>As we know, it’s hard to have a date for every package and a fast answer to every question. But we do keep an open line of communication, and try to respond as fast as we can.
                     </p>

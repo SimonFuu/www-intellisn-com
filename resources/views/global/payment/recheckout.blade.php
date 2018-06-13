@@ -4,6 +4,8 @@
         @if(session('error'))
             <div class="alert alert-danger mt-30"><!-- DANGER -->
                 <strong>Error</strong> {{ session('error') }}
+                <br />
+                Please try again.
             </div>
         @endif
         <form action="{{ route(SITE . 'ReCheckout') }}" method="post">
