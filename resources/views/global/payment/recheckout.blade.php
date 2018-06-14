@@ -20,7 +20,7 @@
 
                         <div class="row form-row">
                             <div class="col-md-6 col-sm-6 form-group">
-                                <label for="name">Name *</label>
+                                <label for="name">Recipient *</label>
                                 <input id="name" name="name" value="{{ $delivery -> name }}" type="text" class="form-control required{{ $errors -> has('name') ? ' is-invalid error' : '' }}" />
                                 @if($errors -> has('name'))
                                     <div class="invalid-feedback">

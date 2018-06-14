@@ -54,9 +54,9 @@ class PaymentController extends GlobalController
         ];
         $messages = [
             'id' => 'There is something wrong.',
-            'name.required' => 'The name is required.',
-            'name.max' => 'The length of name must be less than :max',
-            'name.min' => 'The length of name must be greater than :min',
+            'name.required' => 'The recipient is required.',
+            'name.max' => 'The length of recipient must be less than :max',
+            'name.min' => 'The length of recipient must be greater than :min',
             'email.required' => 'The e-mail is required.',
             'email.email' => 'The e-mail is invalid.',
             'email.max' => 'The length of e-mail must be less than :max',
@@ -78,6 +78,9 @@ class PaymentController extends GlobalController
             'zip.min' => 'The length of zip must be greater than :min',
             'country.required' => 'The country is required.',
             'country.exists' => 'The country is mismatch with your selection.',
+            'paymentCCName.required' => 'The credit card holder name is required.',
+            'paymentCCName.max' => 'The length of credit card holder name must be less than :max.',
+            'paymentCCName.min' => 'The length of credit card holder name must be greater than :min.',
             'paymentCCNumber.required' => 'The credit card number is required.',
             'paymentCCNumber.max' => 'The length of credit card number must be less than :max',
             'paymentCCNumber.min' => 'The length of credit card number must be greater than :min',
@@ -89,7 +92,7 @@ class PaymentController extends GlobalController
             'paymentCCCVV.min' => 'The length of CVV/CVV2 must be greater than :min',
             'paymentCCCVV.max' => 'The length of CVV/CVV2 must be less than :min'
         ];
-        
+
         $this -> validate($request, $rules, $messages);
 
         $ids = dk_get_next_ids(3);
@@ -236,9 +239,9 @@ class PaymentController extends GlobalController
         ];
         $messages = [
             'id' => 'There is something wrong.',
-            'name.required' => 'The name is required.',
-            'name.max' => 'The length of name must be less than :max',
-            'name.min' => 'The length of name must be greater than :min',
+            'name.required' => 'The recipient is required.',
+            'name.max' => 'The length of recipient must be less than :max',
+            'name.min' => 'The length of recipient must be greater than :min',
             'email.required' => 'The e-mail is required.',
             'email.email' => 'The e-mail is invalid.',
             'email.max' => 'The length of e-mail must be less than :max',
@@ -260,6 +263,9 @@ class PaymentController extends GlobalController
             'zip.min' => 'The length of zip must be greater than :min',
             'country.required' => 'The country is required.',
             'country.exists' => 'The country is mismatch with your selection.',
+            'paymentCCName.required' => 'The credit card holder name is required.',
+            'paymentCCName.max' => 'The length of credit card holder name must be less than :max.',
+            'paymentCCName.min' => 'The length of credit card holder name must be greater than :min.',
             'paymentCCNumber.required' => 'The credit card number is required.',
             'paymentCCNumber.max' => 'The length of credit card number must be less than :max',
             'paymentCCNumber.min' => 'The length of credit card number must be greater than :min',
@@ -271,6 +277,7 @@ class PaymentController extends GlobalController
             'paymentCCCVV.min' => 'The length of CVV/CVV2 must be greater than :min',
             'paymentCCCVV.max' => 'The length of CVV/CVV2 must be less than :min'
         ];
+
         $this -> validate($request, $rules, $messages);
 
         DB::setDefaultConnection('mysql_backend');
