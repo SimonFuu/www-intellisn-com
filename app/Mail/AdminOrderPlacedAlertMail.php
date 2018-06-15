@@ -11,14 +11,18 @@ class AdminOrderPlacedAlertMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $order;
+
+    public $subject = 'Payment Received';
+
     /**
      * Create a new message instance.
-     *
+     * @param $order array
      * @return void
      */
-    public function __construct()
+    public function __construct($order = [])
     {
-        //
+        $this -> order = $order;
     }
 
     /**
@@ -28,6 +32,6 @@ class AdminOrderPlacedAlertMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('mail.admin.order.placed');
     }
 }

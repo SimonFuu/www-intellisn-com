@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\AdminAlertMail;
+use App\Mail\AdminOrderPlacedAlertMail;
 use App\Mail\OrderPlacedMail;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
@@ -91,6 +92,7 @@ class Controller extends BaseController
             case 1:
                 // 发送邮件
                 Mail::to($mail -> email) -> queue(new OrderPlacedMail($mail));
+                Mail::to(config('app.mail.sellers')) -> queue(new AdminOrderPlacedAlertMail($mail));
                 break;
             default:
                 // 管理员邮件

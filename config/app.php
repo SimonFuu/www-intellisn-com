@@ -134,6 +134,10 @@ return [
     ],
 
     'schema' => env('APP_ENV') === 'local' ? 'http' : env('APP_SCHEMA'),
+
+    'mail' => [
+        'sellers' => env('ITLS_SELLERS_MAIL'),
+    ],
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

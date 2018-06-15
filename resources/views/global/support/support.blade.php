@@ -21,28 +21,28 @@
                             Toggled - “Domi” mode (Receives and sends synchronization signals); <br>
                             Released - standalone mode (The “Domi” functionality is off).
                         </div>
-                        <div>
+                        <div class="mt-35">
                             <h4>State Indicator:</h4>
                             Flashes Quickly - in synchronization;  <br>
                             Flashes Slowly - low battery;  <br>
                             Breathes - being recharged.
                         </div>
-                        <div>
+                        <div class="mt-35">
                             <h4>Storage Switch:</h4>
                             Up - Cuts off the power supply from batteries (for long-distance shipment, long-term storage purposes); Does not apply when the power adapter is connected;<br>
                             Down - Enables the power supply from batteries; <br>
                             The lamp is always rechargeable regardless of the up/down status.
                         </div>
-                        <div>
+                        <div class="mt-35">
                             <h4>Power/Extension Dock:</h4>
                             Provides a USB port to be connected to a power adapter;<br>
                             Reuses the USB port to work as a USB device which can be connected and configured with a PC.
                         </div>
-                        <div>
+                        <div class="mt-35">
                             <h4>Reset Holes:</h4>
                             Reserved for further firmware updates.
                         </div>
-                        <div>
+                        <div class="mt-35">
                             <h4>Mounting Holes:</h4>
                             Reserved for further accessories.
                         </div>

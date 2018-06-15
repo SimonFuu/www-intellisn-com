@@ -100,7 +100,7 @@ class PaymentController extends GlobalController
 
         // 先获取订单状态
         $order = DB::table('orders')
-            -> select('id', 'car', 'currency', 'total')
+            -> select('id', 'car', 'currency', 'total', 'source')
             -> where('status', 0)
             -> where('is_delete', 0)
             -> where('id', $request -> id)
@@ -140,13 +140,14 @@ class PaymentController extends GlobalController
                 'zip' => $request -> zip,
                 'car' => $order -> car
             ];
+            $addressString = sprintf('%s, %s, %s, %s, %s, %s, %s, %s',
+                $address['name'], $address['phone'], $address['address1'], $address['address2'],
+                $address['city'], $address['state'], $address['zip'], $address['country']
+            );
             DB::table('customers_address') -> insert($address);
             DB::table('orders') -> where('id', $order -> id) -> update([
                 'a_id' => $ids[1],
-                'address' => sprintf('%s, %s, %s, %s, %s, %s, %s, %s',
-                    $address['name'], $address['phone'], $address['address1'], $address['address2'],
-                    $address['city'], $address['state'], $address['zip'], $address['country']
-                ),
+                'address' => $addressString,
             ]);
             DB::commit();
         } catch (\Exception $e) {
@@ -187,12 +188,15 @@ class PaymentController extends GlobalController
             }
             // TODO 向用户发送邮件信息 $request -> email
             // 跳转到 success 结果
+
             $mail = (object) [
                 'id' => $order -> id,
                 'recipient' => $request -> name,
                 'site' => SITE,
-                'amount' => $paymentInfo['currency']  . ': ' . $paymentInfo['amount'],
-                'email' => $request -> email
+                'amount' => $paymentInfo['currency']  . ': ' . number_format($paymentInfo['amount'], 2),
+                'email' => $request -> email,
+                'detail' => $this -> getOrderDetail($order),
+                'address' => $addressString
             ];
             $this -> sentMail($mail, 1);
             return redirect(route(SITE . 'CheckoutResult')) -> with('success', $request -> name);
@@ -284,7 +288,7 @@ class PaymentController extends GlobalController
 
         // 先获取订单状态
         $order = DB::table('customers_address')
-            -> select('orders.id', 'orders.car', 'orders.currency', 'orders.total', 'customers_address.name', 'customers.email')
+            -> select('orders.id', 'orders.car', 'orders.currency', 'orders.total', 'orders.source', 'customers_address.name', 'customers.email')
             -> leftJoin('orders', 'customers_address.id', '=','orders.a_id')
             -> leftJoin('customers', 'customers_address.c_id', '=','customers.id')
             -> where('orders.status', 0)
@@ -327,12 +331,13 @@ class PaymentController extends GlobalController
                 'car' => $order -> car
             ];
             DB::table('customers_address') -> insert($address);
+            $addressString = sprintf('%s, %s, %s, %s, %s, %s, %s, %s',
+                $address['name'], $address['phone'], $address['address1'], $address['address2'],
+                $address['city'], $address['state'], $address['zip'], $address['country']
+            );
             DB::table('orders') -> where('id', $order -> id) -> update([
                 'a_id' => $ids[1],
-                'address' => sprintf('%s, %s, %s, %s, %s, %s, %s, %s',
-                    $address['name'], $address['phone'], $address['address1'], $address['address2'],
-                    $address['city'], $address['state'], $address['zip'], $address['country']
-                ),
+                'address' => $addressString,
             ]);
             DB::commit();
         } catch (\Exception $e) {
@@ -376,8 +381,10 @@ class PaymentController extends GlobalController
                 'id' => $order -> id,
                 'recipient' => $request -> name,
                 'site' => SITE,
-                'amount' => $paymentInfo['currency']  . ': ' . $paymentInfo['amount'],
-                'email' => $request -> email
+                'amount' => $paymentInfo['currency']  . ': ' . number_format($paymentInfo['amount'], 2),
+                'email' => $request -> email,
+                'detail' => $this -> getOrderDetail($order),
+                'address' => $addressString
             ];
             $this -> sentMail($mail, 1);
             return redirect(route(SITE . 'CheckoutResult')) -> with('success', $order -> name);
