@@ -10,7 +10,10 @@
                 <div>
                     <ul class="list-unstyled">
                         <li class="">
-                            Illinois, United States
+                            <p class="mb-2">1440 W Taylor St</p>
+                            <p class="mb-2">#496</p>
+                            <p class="mb-2">Chicago, IL 60607</p>
+                            <p class="mb-10">United States</p>
                         </li>
                         <li class="">
                             <a href="mailto:contact@intellisn.com">contact@intellisn.com</a>
