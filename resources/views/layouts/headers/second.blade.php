@@ -22,6 +22,12 @@
                                 Tech Specs
                             </a>
                         </li>
+
+                        <li class="sub-nav-header-item"><!-- PRICING -->
+                            <a href="{{ route(SITE . 'ProductGallery', ['id' => '6402415426629795841']) }}">
+                                Gallery
+                            </a>
+                        </li>
                         <li class="sub-nav-header-item"><!-- TESTIMONIALS -->
                             <a href="{{ route(SITE . 'ProductSupport', ['id' => '6402415426629795841']) }}">
                                 Support

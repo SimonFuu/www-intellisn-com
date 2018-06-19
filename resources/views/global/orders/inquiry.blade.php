@@ -11,8 +11,14 @@
                             <strong>Error</strong> {{ $message }}
                         </div>
                     @endif
+                    @if(session('error'))
+                        <div class="alert alert-danger mt-30 mb-30"><!-- DANGER -->
+                            <strong>Error</strong> {{ session('error') }}
+                        </div>
+                    @endif
                     <div class="box-static box-border-top p-30">
-                        <form class="m-0" method="get" action="#" autocomplete="off">
+                        <form class="m-0" method="post" action="{{ route(SITE . 'OrderInquiryResult') }}" autocomplete="off">
+                            {{ csrf_field() }}
                             <div class="clearfix">
                                 <!-- Email -->
                                 <div class="form-group">

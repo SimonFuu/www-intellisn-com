@@ -24,8 +24,9 @@ class RouteCheck
                 define('SECOND_HEADER', 'TEST Header');
             } else {
                 $this -> setGlobalHeader($routeName);
-
             }
+        } elseif ($request -> route() -> getName() === SITE . 'OrderInquiryResult') {
+            define('SECOND_HEADER', 'Order Inquiry');
         }
         return $next($request);
     }
@@ -74,11 +75,17 @@ class RouteCheck
             case SITE . 'OrderInquiryForm':
                 define('SECOND_HEADER', 'Order Inquiry');
                 break;
+            case SITE . 'OrderInquiryResult':
+                define('SECOND_HEADER', 'Order Inquiry');
+                break;
             case SITE . 'CheckoutResult':
                 define('SECOND_HEADER', 'Checkout Result');
                 break;
             case SITE . 'Product':
                 define('SECOND_HEADER', 'Domilamp');
+                break;
+            case SITE . 'ProductGallery':
+                define('SECOND_HEADER', 'Gallery');
                 break;
             default:
                 define('SECOND_HEADER', 'Domilamp');  // 定义首页第二级 header

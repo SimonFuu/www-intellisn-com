@@ -219,7 +219,13 @@ class OrderController extends GlobalController
             'delivery' => $delivery
         ]);
     }
-    public function showInquiryForm(Request $request)
+
+    public function showInquiryForm()
+    {
+        return view('global.orders.inquiry');
+    }
+
+    public function showInquiryResult(Request $request)
     {
         if ($request -> has('email') && $request -> has('order_number')) {
             // 获取订单
@@ -256,13 +262,12 @@ class OrderController extends GlobalController
                     return view('global.orders.detail', ['order' => $order, 'result' => true]);
                 } else {
                     return view('global.orders.inquiry', [
-                        'result' => false, 'message' => 'There is something wrong, please send an email with your ITLS ORDER ID to service@intellisn.com。'
+                        'result' => false, 'message' => 'There is something wrong, please send an email with your ITLS ORDER NUMBER to service@intellisn.com。'
                     ]);
-
                 }
             }
         } else {
-            return view('global.orders.inquiry');
+            return redirect(route(SITE . 'OrderInquiryForm')) -> with('error', 'The order number and the email address are both required.');
         }
     }
 }

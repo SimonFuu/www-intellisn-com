@@ -25,13 +25,19 @@ Route::domain(config('domains.global'))
             Route::get('/order/checkout/{id}', 'OrderController@showCheckoutForm') -> name('globalCheckoutForm');
             Route::get('/order/recheckout/{id}', 'OrderController@showReCheckoutForm') -> name('globalReCheckoutForm');
             Route::get('/order/inquiry', 'OrderController@showInquiryForm') -> name('globalOrderInquiryForm');
+            Route::post('/order/inquiry', 'OrderController@showInquiryResult') -> name('globalOrderInquiryResult');
             Route::post('/pay/submit', 'PaymentController@checkoutSubmit') -> name('globalCheckout');
             Route::post('/pay/resubmit', 'PaymentController@checkoutReSubmit') -> name('globalReCheckout');
             Route::get('/pay/result', 'PaymentController@checkoutSuccess') -> name('globalCheckoutResult');
             Route::get('/product/{id}', 'ProductController@showIndex') -> name('globalProduct');
+            Route::get('/product/gallery/{id}', 'ProductController@showGallery') -> name('globalProductGallery');
             Route::post('/product/sku/price', 'ProductController@getSKUPrice') -> name('globalQuerySKUPrice');
             Route::post('/subscription/store', 'IndexController@storeSubscription') -> name('globalStoreSubscription');
-            Route::post('/payment/stripe/webhook', 'PaymentController@webhook');
+            Route::post('/payment/stripe/webhook', 'PaymentController@webhook') -> name('globalStripeWebHook');
+            Route::get('/domilamp/order', function () {
+                return redirect(route('globalOrderInquiryForm'));
+            }) -> name('oldWebOrderInquiryForm');
+
 
         });
     });

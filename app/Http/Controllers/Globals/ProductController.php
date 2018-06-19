@@ -94,4 +94,10 @@ class ProductController extends GlobalController
         }
         return $response;
     }
+
+
+    public function showGallery($id = 0)
+    {
+        return view('global.products.gallery');
+    }
 }
