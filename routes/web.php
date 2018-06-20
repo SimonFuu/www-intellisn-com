@@ -38,7 +38,9 @@ Route::domain(config('domains.global'))
                 return redirect(route('globalOrderInquiryForm'));
             }) -> name('oldWebOrderInquiryForm');
 
-
+            //  TODO 添加 shipment 信息临时路由
+            Route::get('/shipment/{id}', 'IndexController@setShipmentForm') -> name('backendSetShipmentForm');
+            Route::post('/shipment/{id}', 'IndexController@storeShipmentForm') -> name('backendSubmitSetShipment');
         });
     });
 

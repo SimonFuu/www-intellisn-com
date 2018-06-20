@@ -251,7 +251,7 @@ class OrderController extends GlobalController
                 $order -> express = DB::connection('mysql_backend')
                     -> table('orders_express')
                     -> select('orders_express.number', 'orders_express.update_at', 'express_companies.name', 'express_companies.website')
-                    -> leftJoin('express_companies', 'express_companies.id', '=', 'orders_express.company')
+                    -> leftJoin('express_companies', 'express_companies.id', '=', 'orders_express.c_id')
                     -> where('orders_express.o_id', $order -> id)
                     -> where('orders_express.is_delete', 0)
                     -> first();

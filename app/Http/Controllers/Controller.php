@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\AdminAlertMail;
 use App\Mail\AdminOrderPlacedAlertMail;
 use App\Mail\OrderPlacedMail;
+use App\Mail\OrderShippedMail;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -90,9 +91,13 @@ class Controller extends BaseController
     {
         switch ($type) {
             case 1:
-                // 发送邮件
+                // 发送支付邮件邮件
                 Mail::to($mail -> email) -> queue(new OrderPlacedMail($mail));
                 Mail::to(config('app.mail.sellers')) -> queue(new AdminOrderPlacedAlertMail($mail));
+                break;
+            case 2:
+                // 发送发货邮件
+                Mail::to($mail -> email) -> bcc(config('app.mail.sellers'))-> queue(new OrderShippedMail($mail));
                 break;
             default:
                 // 管理员邮件
